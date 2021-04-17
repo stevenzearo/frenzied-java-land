@@ -6,5 +6,5 @@ if __name__ == '__main__':
         os.system("echo Hello, word!")
         os.system("echo hello")
         user_input = input("Need to stop? Y/N\n")
-        if (user_input.encode("UTF8").lower() == "Y".encode("UTF8").lower()):
+        if (user_input.lower() == "Y".lower()):
             isGoOn = False
