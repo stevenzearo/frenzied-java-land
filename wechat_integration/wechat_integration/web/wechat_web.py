@@ -8,6 +8,7 @@ def hello(request: HttpRequest):
     echo_str = request.GET.get("echostr")
     timestamp = request.GET.get("timestamp")
     if (echo_str is str()):
+        print("echo_str: %s" % echo_str)
         return echo_str
 
     data_bytes = request.body.decode("utf-8")
