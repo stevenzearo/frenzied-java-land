@@ -7,7 +7,7 @@ def hello(request: HttpRequest):
     signature = request.GET.get("signature")
     echo_str = request.GET.get("echostr")
     timestamp = request.GET.get("timestamp")
-    if (echo_str is str()):
+    if (echo_str is not str()):
         print("echo_str: %s" % echo_str)
         return echo_str
 
