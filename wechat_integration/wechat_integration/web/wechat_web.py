@@ -4,9 +4,9 @@ from django.http import HttpRequest, HttpResponse
 
 def hello(request: HttpRequest):
     # integration with wechat
-    signature = request.GET("signature")
-    echo_str = request.GET("echostr")
-    timestamp = request.GET("timestamp")
+    signature = request.GET["signature"]
+    echo_str = request.GET["echostr"]
+    timestamp = request.GET["timestamp"]
     if (echo_str is not str()):
         print("echo_str: %s" % echo_str)
         return echo_str
