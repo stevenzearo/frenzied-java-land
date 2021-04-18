@@ -1,9 +1,15 @@
 import json
-
 from django.http import HttpRequest, HttpResponse
 
 
 def hello(request: HttpRequest):
+    # integration with wechat
+    signature = request.GET.get("signature")
+    echo_str = request.GET.get("echostr")
+    timestamp = request.GET.get("timestamp")
+    if (echo_str is str()):
+        return echo_str
+
     data_bytes = request.body.decode("utf-8")
     print("data_bytes: %s\n" % data_bytes)
     if (data_bytes is str()):
