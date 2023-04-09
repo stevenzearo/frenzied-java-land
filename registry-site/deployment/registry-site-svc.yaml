@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: registry-site
+spec:
+  selector:
+    app: registry-site
+  ports:
+  - name: registry-site
+    port: 8400
+    targetPort: 8400
+    nodePort: 30010
+    protocol: TCP
+  type: NodePort

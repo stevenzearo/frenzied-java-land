@@ -1,0 +1,4 @@
+registry-site:
+  image: stevenzearo/registry-site:latest
+  ports:
+    - "8400:8400"

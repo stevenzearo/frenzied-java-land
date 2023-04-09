@@ -1,0 +1,73 @@
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+        /*maven {
+            url = uri("https://maven.pkg.github.com/stevenzearo/distance-lib")
+            credentials {
+                username = 'stevenzearo'
+                password = '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'
+            }
+        }*/
+    }
+}
+
+project(':backend:ichat-service-interface') {
+    dependencies {
+        implementation(project(':common:common-lib'))
+
+        implementation("javax.validation:validation-api:$javaxValidationVersion")
+        implementation("javax.xml.bind:jaxb-api:$javaxVersion")
+        implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
+        implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
+
+        implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
+
+        implementation("org.springframework.cloud:spring-cloud-starter:$springCloudVersion")
+        implementation("org.springframework.cloud:spring-cloud-context:$springCloudVersion")
+        implementation("org.springframework.cloud:spring-cloud-starter-config:$springCloudVersion")
+        implementation("org.springframework.cloud:spring-cloud-starter-openfeign:$springCloudVersion")
+    }
+}
+
+
+project(':backend:ichat-service') {
+    dependencies {
+        implementation(project(':backend:ichat-service-interface'))
+        implementation(project(':common:common-lib'))
+
+        implementation("javax.validation:validation-api:$javaxValidationVersion")
+        implementation("javax.xml.bind:jaxb-api:$javaxVersion")
+        implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
+        implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
+
+        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
+        implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
+        implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springHystrixVersion")
+        implementation("mysql:mysql-connector-java:$mysqlVersion")
+        implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion")
+        implementation("org.springframework.kafka:spring-kafka:$kafkaVersion")
+
+        implementation("org.springframework.data:spring-data-mongodb:$springDataMongoVersion")
+        implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springCloudVersion") {
+            exclude group: 'com.google.code.gson', module: 'gson'
+        }
+
+        testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+        testImplementation("junit:junit:$junitVersion")
+    }
+}
+
+
+
+project(':backend:ichat-service-db-migration') {
+    dependencies {
+        implementation("mysql:mysql-connector-java:$mysqlVersion")
+        implementation('org.flywaydb:flyway-gradle-plugin:6.1.3')
+    }
+}

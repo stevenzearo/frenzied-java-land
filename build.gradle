@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+group 'com.steve.ichat'
+version '0.0.1-SNAPSHOT'
+
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            name "maven-repo"
+            url "https://repo.maven.apache.org/maven2"
+        }
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+}

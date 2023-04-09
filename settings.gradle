@@ -1,0 +1,9 @@
+rootProject.name = 'ichat'
+include 'ichat-site'
+include 'registry-site'
+include 'backend:ichat-service',
+        'backend:ichat-service-db-migration',
+        'backend:ichat-service-interface'
+include 'common:common-lib'
+
+

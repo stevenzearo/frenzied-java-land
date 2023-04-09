@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+application {
+    mainClassName = 'app.Application'
+}
+
+dependencies {
+    implementation(project(':common:common-lib'))
+    implementation(project(':backend:ichat-service-interface'))
+    implementation("javax.xml.bind:jaxb-api:$javaxVersion")
+    implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
+    implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:$springCloudVersion")
+//    implementation("redis.clients:jedis:$jedisVersion")
+//    implementation("org.springframework.data:spring-data-redis:$springDataVersion")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springCloudVersion"){
+        exclude group: 'com.google.code.gson', module: 'gson'
+    }
+    implementation("org.springframework.boot:spring-boot-starter-websocket:$springBootVersion")
+}

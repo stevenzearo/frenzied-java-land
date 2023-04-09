@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: registry-site
+spec:
+  restartPolicy: Never
+  containers:
+  - name: registry-site
+    image: stevenzearo/registry-site:latest
+    ports:
+    - name: registry-site
+      containerPort: 8400
+      protocol: TCP
+      hostIP: 0.0.0.0
+      hostPort: 8400
