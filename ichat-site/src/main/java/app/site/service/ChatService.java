@@ -1,7 +1,6 @@
 package app.site.service;
 
 import app.site.model.Image;
-import app.site.model.Location;
 import app.site.model.MessageType;
 import app.site.model.ReceivedMessage;
 import app.site.model.ReplyingMessage;

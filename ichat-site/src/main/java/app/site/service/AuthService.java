@@ -35,4 +35,9 @@ public class AuthService {
             return "";
         }
     }
+
+    public String getAccessToken() {
+        // todo
+        return "";
+    }
 }

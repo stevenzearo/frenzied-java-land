@@ -25,9 +25,9 @@ public class ReplyingMessage {
     @XmlElementRefs({
         @XmlElementRef(type = Image.class),
         @XmlElementRef(type = Voice.class),
+        @XmlElementRef(type = Music.class),
         @XmlElementRef(type = Video.class),
         @XmlElementRef(type = Article.class),
-        @XmlElementRef(type = Location.class),
     })
     public Media media;
 }

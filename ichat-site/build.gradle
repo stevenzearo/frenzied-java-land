@@ -11,6 +11,10 @@ application {
     mainClassName = 'app.Application'
 }
 
+test {
+    useJUnit()
+}
+
 dependencies {
     implementation(project(':common:common-lib'))
     implementation(project(':backend:ichat-service-interface'))

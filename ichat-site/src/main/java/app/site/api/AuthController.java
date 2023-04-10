@@ -24,10 +24,9 @@ public class AuthController {
     ChatService chatService;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    String auth(@QueryParam("signature") String signature, @QueryParam("timestamp") String timestamp, @QueryParam("nonce") String nonce, @QueryParam("echostr") String echoStr) {
-        return authService.auth(signature, timestamp, nonce, echoStr);
+    String auth(@QueryParam("signature") String signature, @QueryParam("timestamp") String timestamp, @QueryParam("nonce") String nonce, @QueryParam("echostr") String echostr) {
+        return authService.auth(signature, timestamp, nonce, echostr);
     }
-
 
     @RequestMapping(value = "/home", method = RequestMethod.POST)
     byte[] chat(@RequestBody String body) {
