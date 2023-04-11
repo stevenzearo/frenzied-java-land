@@ -43,17 +43,16 @@ project(':backend:ichat-service') {
         implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
         implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
 
-        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
-        implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
         implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
-        implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springHystrixVersion")
-        implementation("mysql:mysql-connector-java:$mysqlVersion")
-        implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
-        implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
-        implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion")
-        implementation("org.springframework.kafka:spring-kafka:$kafkaVersion")
-
-        implementation("org.springframework.data:spring-data-mongodb:$springDataMongoVersion")
+//        implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springHystrixVersion")
+        implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+//        implementation("mysql:mysql-connector-java:$mysqlVersion")
+//        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
+//        implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
+//        implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+//        implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion")
+//        implementation("org.springframework.kafka:spring-kafka:$kafkaVersion")
+//        implementation("org.springframework.data:spring-data-mongodb:$springDataMongoVersion")
         implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springCloudVersion") {
             exclude group: 'com.google.code.gson', module: 'gson'
         }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * @author steve
  */
-public class WebException extends Exception implements Serializable {
+public class WebException extends RuntimeException implements Serializable {
     int statusCode = WebErrorCodes.SERVER_ERROR;
     String errorCode = "INTERNAL_ERROR";
 

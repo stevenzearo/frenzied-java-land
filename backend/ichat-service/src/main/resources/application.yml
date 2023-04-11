@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: ichat-service
+  cloud:
+    config:
+      enabled: false
+  profiles:
+    active: local
+server:
+  port: 8401
+  undertow:
+    io-threads: 4
+    worker-threads: 20
+    buffer-size: 1024
+    direct-buffers: true
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        web: debug
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    eureka-server-port: 8400
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.client.eureka-server-port}/eureka/
+    register-with-eureka: true
+    fetch-registry: true

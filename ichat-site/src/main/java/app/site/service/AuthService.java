@@ -3,6 +3,9 @@ package app.site.service;
 import app.util.EncryptException;
 import app.util.EncryptHelper;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -16,11 +19,15 @@ public class AuthService {
     private final Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     public String auth(String signature, String timestamp, String nonce, String echoStr) {
-        ArrayList<String> list = new ArrayList<>();
+        if (signature == null || signature.trim().isEmpty()) {
+            logger.warn("empty signature");
+            return "";
+        }
+        List<String> list = new ArrayList<>();
         list.add(TOKEN);
         list.add(timestamp);
         list.add(nonce);
-        list.sort(String::compareTo);
+        list = list.stream().filter(Objects::nonNull).sorted(String::compareTo).collect(Collectors.toList());
         String shaStr;
         try {
             shaStr = EncryptHelper.encryptSha1(list);
