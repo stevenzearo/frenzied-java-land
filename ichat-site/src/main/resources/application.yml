@@ -38,7 +38,7 @@ logging:
     root: info
     org:
       springframework:
-        web: debug
+        web: warn
 eureka:
   instance:
     hostname: localhost
@@ -48,3 +48,13 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.client.eureka-server-port}/eureka/
     register-with-eureka: false
     fetch-registry: true
+
+ribbon:
+  eureka:
+    enabled: true
+AuthWebService:
+  ribbon:
+    listOfService: http://localhost:8401
+ChatWebService:
+  ribbon:
+    listOfService: http://localhost:8401

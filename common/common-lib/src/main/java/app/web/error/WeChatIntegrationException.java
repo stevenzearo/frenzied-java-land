@@ -7,15 +7,15 @@ public class WeChatIntegrationException extends WebException {
     private static final String ERROR_CODE = "WECHAT_INTEGRATION_ERROR";
 
     public WeChatIntegrationException() {
-        super(WebErrorCodes.CONFLICT, ERROR_CODE, "WeChat integration error.");
+        super(WebErrorCodes.WECHAT_INTEGRATION_ERROR, ERROR_CODE, "WeChat integration error.");
     }
 
     public WeChatIntegrationException(String errorCode, String message) {
-        super(WebErrorCodes.CONFLICT, errorCode, message);
+        super(WebErrorCodes.WECHAT_INTEGRATION_ERROR, errorCode, message);
     }
 
     public WeChatIntegrationException(String message) {
-        super(WebErrorCodes.CONFLICT, ERROR_CODE, message);
+        super(WebErrorCodes.WECHAT_INTEGRATION_ERROR, ERROR_CODE, message);
     }
 
     public WeChatIntegrationException(Throwable cause) {

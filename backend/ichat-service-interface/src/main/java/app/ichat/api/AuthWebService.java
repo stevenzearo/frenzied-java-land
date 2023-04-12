@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Steve Zou
  */
 @RestController
-@RequestMapping("/auth")
-@FeignClient(value = "auth-web-service")
+@FeignClient(value = "ichat-service", qualifiers = "auth-web-service")
 public interface AuthWebService {
-    @RequestMapping(value = "/access-token", method = RequestMethod.GET)
+    @RequestMapping(value = "/auth/access-token", method = RequestMethod.GET)
     Response<String> getAccessToken();
-
 }

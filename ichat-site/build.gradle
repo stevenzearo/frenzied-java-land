@@ -28,4 +28,7 @@ dependencies {
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     implementation("org.springframework.boot:spring-boot-starter-websocket:$springBootVersion")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testImplementation("junit:junit:$junitVersion")
 }

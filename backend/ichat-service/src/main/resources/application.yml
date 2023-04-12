@@ -18,9 +18,10 @@ logging:
     root: info
     org:
       springframework:
-        web: debug
+        web: warn
 eureka:
   instance:
+    leastRenewalIntervalSeconds: 5
     hostname: localhost
   client:
     eureka-server-port: 8400

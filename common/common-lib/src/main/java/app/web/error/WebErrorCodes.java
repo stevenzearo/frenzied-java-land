@@ -11,6 +11,7 @@ public class WebErrorCodes {
     public static final int NOT_FOUND = 404;
     public static final int CONFLICT = 409;
     public static final int WECHAT_INTEGRATION_ERROR = 411;
+    public static final int TURING_INTEGRATION_ERROR = 421;
     public static final int SERVER_ERROR = 502;
 
 }
