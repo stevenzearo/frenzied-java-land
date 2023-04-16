@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,7 +39,7 @@ public class EventMessageHandler implements MessageHandler {
     private ReplyingMessage welcomeMessage(ReceivedMessage message) {
         ReplyingMessage replyingMessage = basic(message);
         replyingMessage.msgType = MessageType.TEXT;
-        replyingMessage.content = "你好，欢迎关注野生程序员聚集地.";
+        replyingMessage.content = new String("你好，欢迎关注野生程序员聚集地".getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_8);
         return replyingMessage;
     }
 
