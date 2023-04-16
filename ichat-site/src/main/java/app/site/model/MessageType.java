@@ -15,6 +15,8 @@ public enum MessageType implements Serializable {
     TEXT("text"),
     @XmlEnumValue("image")
     IMAGE("image"),
+    @XmlEnumValue("event")
+    EVENT("event"),
     @XmlEnumValue("voice")
     VOICE("voice"),
     @XmlEnumValue("video")
@@ -27,6 +29,7 @@ public enum MessageType implements Serializable {
     LOCATION("location");
 
     public final String value;
+
     MessageType(String value) {
         this.value = value;
     }

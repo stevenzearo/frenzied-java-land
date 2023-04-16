@@ -1,8 +1,6 @@
 package app.site.model;
 
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementRef;
-import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -37,4 +35,7 @@ public class ReceivedMessage {
     public String scale;
     @XmlElement(name = "Label")
     public String label;
+
+    @XmlElement(name = "Event")
+    public EventType event;
 }
