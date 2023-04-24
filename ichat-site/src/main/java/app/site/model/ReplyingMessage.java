@@ -22,6 +22,8 @@ public class ReplyingMessage {
     public String msgId;
     @XmlElement(name = "Content")
     public String content;
+    @XmlElement(name = "ArticleCount")
+    public Integer articleCount;
     @XmlElementRefs({
         @XmlElementRef(type = Image.class),
         @XmlElementRef(type = Voice.class),

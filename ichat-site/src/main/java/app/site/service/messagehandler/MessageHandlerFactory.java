@@ -1,4 +1,4 @@
-package app.site.service;
+package app.site.service.messagehandler;
 
 import app.site.model.MessageType;
 import app.site.service.messagehandler.DefaultMessageHandler;

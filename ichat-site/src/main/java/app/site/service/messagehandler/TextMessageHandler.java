@@ -3,6 +3,8 @@ package app.site.service.messagehandler;
 import app.ichat.api.ChatWebService;
 import app.ichat.api.chat.ChatRequest;
 import app.ichat.api.chat.ChatResponse;
+import app.site.model.Article;
+import app.site.model.ArticleItem;
 import app.site.model.ChatCache;
 import app.site.model.MessageType;
 import app.site.model.ReceivedMessage;
@@ -11,14 +13,14 @@ import app.site.service.ChatCacheService;
 import app.web.error.WebException;
 import app.web.response.Response;
 import app.web.response.ResponseHelper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * @author simple
@@ -38,9 +40,37 @@ public class TextMessageHandler implements MessageHandler {
 
     @Override
     public ReplyingMessage handle(ReceivedMessage message) {
+        return replyText(message);
+    }
+
+    private ReplyingMessage replyText(ReceivedMessage message) {
+        if (message.content.contains("新闻") || message.content.toLowerCase(Locale.ROOT).contains("news")) {
+            return replyNews(message);
+        } else {
+            return replyChat(message);
+        }
+    }
+
+    private ReplyingMessage replyChat(ReceivedMessage message) {
         ReplyingMessage replyingMessage = basic(message);
         replyingMessage.msgType = MessageType.TEXT;
         replyingMessage.content = transferToAnswer(message);
+        return replyingMessage;
+    }
+
+    private ReplyingMessage replyNews(ReceivedMessage message) {
+        ArticleItem articleItem = new ArticleItem();
+        articleItem.title = "Hello, world!";
+        articleItem.description = "Hello, world!";
+        articleItem.picUrl = "https://580054c2.r3.cpolar.top/static/img/a_small.jpg";
+        articleItem.url = "https://580054c2.r3.cpolar.top/static/index.html";
+        Article article = new Article();
+        article.items = List.of(articleItem);
+
+        ReplyingMessage replyingMessage = basic(message);
+        replyingMessage.msgType = MessageType.NEWS;
+        replyingMessage.media = article;
+        replyingMessage.articleCount = article.items.size();
         return replyingMessage;
     }
 

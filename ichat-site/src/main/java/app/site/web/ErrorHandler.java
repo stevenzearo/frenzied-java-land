@@ -1,13 +1,9 @@
 package app.site.web;
 
-import app.web.error.ErrorResponse;
-import app.web.error.MethodNotAllowedException;
 import app.web.error.WebException;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;
-import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
