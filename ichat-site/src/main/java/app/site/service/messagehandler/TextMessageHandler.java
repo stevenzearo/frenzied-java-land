@@ -3,13 +3,16 @@ package app.site.service.messagehandler;
 import app.ichat.api.ChatWebService;
 import app.ichat.api.chat.ChatRequest;
 import app.ichat.api.chat.ChatResponse;
-import app.site.model.Article;
-import app.site.model.ArticleItem;
+import app.site.config.ResourceConfig;
 import app.site.model.ChatCache;
-import app.site.model.MessageType;
-import app.site.model.ReceivedMessage;
-import app.site.model.ReplyingMessage;
+import app.site.model.common.MessageType;
+import app.site.model.receive.ReceivedMessage;
+import app.site.model.reply.Article;
+import app.site.model.reply.ArticleItem;
+import app.site.model.reply.ReplyingMessage;
+import app.site.model.reply.ReplyingMessageBuilder;
 import app.site.service.ChatCacheService;
+import app.web.error.ConflictException;
 import app.web.error.WebException;
 import app.web.response.Response;
 import app.web.response.ResponseHelper;
@@ -20,27 +23,36 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @author simple
  */
-@Service
-public class TextMessageHandler implements MessageHandler {
+@Component
+public class TextMessageHandler extends AbstractMessageHandler {
     private static final String TURING_BOT_NAME = "图灵儿";
+    private static final MessageType handledMsgType = MessageType.TEXT;
     private static final List<String> CHAT_BOT_NAMES = getChatBotNames();
     private static final List<String> UNSUPPORTED_REPLIES = getUnsupportedMsgReplies();
-
     private final Logger logger = LoggerFactory.getLogger(TextMessageHandler.class);
 
     @Autowired(required = false)
     ChatWebService chatWebService;
     @Autowired
     ChatCacheService chatCacheService;
+    @Autowired
+    ResourceConfig resourceConfig;
 
     @Override
-    public ReplyingMessage handle(ReceivedMessage message) {
+    public ReplyingMessage innerHandle(ReceivedMessage message) {
         return replyText(message);
+    }
+
+    @Override
+    protected void checkMessage(ReceivedMessage message) {
+        if (message.msgType != handledMsgType || null == message.content) {
+            throw new ConflictException(String.format("Unsupported message type=%s to handle=%s", message.getClass().getName(), this.getClass().getName()));
+        }
     }
 
     private ReplyingMessage replyText(ReceivedMessage message) {
@@ -52,26 +64,18 @@ public class TextMessageHandler implements MessageHandler {
     }
 
     private ReplyingMessage replyChat(ReceivedMessage message) {
-        ReplyingMessage replyingMessage = basic(message);
-        replyingMessage.msgType = MessageType.TEXT;
-        replyingMessage.content = transferToAnswer(message);
-        return replyingMessage;
+        return new ReplyingMessageBuilder(message).text(transferToAnswer(message));
     }
 
     private ReplyingMessage replyNews(ReceivedMessage message) {
         ArticleItem articleItem = new ArticleItem();
         articleItem.title = "Hello, world!";
         articleItem.description = "Hello, world!";
-        articleItem.picUrl = "https://580054c2.r3.cpolar.top/static/img/a_small.jpg";
-        articleItem.url = "https://580054c2.r3.cpolar.top/static/index.html";
+        articleItem.picUrl = resourceConfig.resourcePrefix + "/img/a_small.jpg";
+        articleItem.url = resourceConfig.resourcePrefix + "/index.html";
         Article article = new Article();
         article.items = List.of(articleItem);
-
-        ReplyingMessage replyingMessage = basic(message);
-        replyingMessage.msgType = MessageType.NEWS;
-        replyingMessage.media = article;
-        replyingMessage.articleCount = article.items.size();
-        return replyingMessage;
+        return new ReplyingMessageBuilder(message).articles(article);
     }
 
     private String transferToAnswer(ReceivedMessage message) {
@@ -98,7 +102,7 @@ public class TextMessageHandler implements MessageHandler {
         chatRequest.text = message.content;
         String fromUserName = message.fromUserName;
         ChatCache chatCache = chatCacheService.connect(fromUserName);
-        String chatId = (chatCache.userId + chatCache.salt).hashCode() + "";
+        String chatId = Integer.toString((chatCache.userId + chatCache.salt).hashCode());
         Response<ChatResponse> response = chatWebService.chat(chatId, chatRequest);
         return ResponseHelper.fetchDataWithException(response);
     }

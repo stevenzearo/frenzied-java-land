@@ -1,21 +1,18 @@
 package app.site.service;
 
-import app.site.model.ReceivedMessage;
-import app.site.model.ReplyingMessage;
+import app.site.model.common.XMLUtil;
+import app.site.model.receive.ReceivedMessage;
+import app.site.model.reply.ReplyingMessage;
 import app.site.service.messagehandler.MessageHandlerFactory;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 /**
  * @author Steve Zou
@@ -23,36 +20,16 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class ChatService {
     private final Logger logger = LoggerFactory.getLogger(ChatService.class);
-
     @Autowired
     MessageHandlerFactory messageHandlerFactory;
 
     public byte[] chat(String body) {
-        ReceivedMessage message = receiveMessage(body);
-        ReplyingMessage replyingMessage = messageHandlerFactory.get(message.msgType).handle(message);
+        ReplyingMessage replyingMessage = messageHandlerFactory.handle(body);
         return replyMessage(replyingMessage);
     }
 
     private ReceivedMessage receiveMessage(String body) {
-        ReceivedMessage message;
-        ByteArrayInputStream byteArrayInputStream = null;
-        try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(ReceivedMessage.class);
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            byteArrayInputStream = new ByteArrayInputStream(body.getBytes(StandardCharsets.UTF_8));
-            message = (ReceivedMessage) unmarshaller.unmarshal(byteArrayInputStream);
-        } catch (JAXBException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (byteArrayInputStream != null) {
-                try {
-                    byteArrayInputStream.close();
-                } catch (IOException e) {
-                    logger.warn("Failed to close ByteArrayInputStream", e);
-                }
-            }
-        }
-        return message;
+        return XMLUtil.toEntity(body, ReceivedMessage.class);
     }
 
     private byte[] replyMessage(ReplyingMessage replyingMessage) {
