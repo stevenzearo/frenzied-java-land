@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+application {
+    mainClassName = 'app.Application'
+}
+
+test {
+    useJUnit()
+}
+
+dependencies {
+    implementation(project(':common:common-lib'))
+    testImplementation("junit:junit:$junitVersion")
+}

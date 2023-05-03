@@ -5,5 +5,4 @@ include 'backend:ichat-service',
         'backend:ichat-service-db-migration',
         'backend:ichat-service-interface'
 include 'common:common-lib'
-
-
+include 'demo:java-demo'
