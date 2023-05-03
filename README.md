@@ -11,7 +11,7 @@ This project is an opensource project, project source code published on GitHub, 
 #### 我们希望所有参与到项目当中的小伙伴都能学到自己想学，并且实际企业当中真正在用的，前沿技术和技能
 #### 有任何想法的小伙伴，欢迎直接在GitHub上面留言或者关注公众号，在公众号上私信我们，我们收到消息后，都会尽快第一时间回复。
 我们的公众号二维码：  
-![FrenziedJavaLand](docs/img/frenzied_java_land.jpg)
+![FrenziedJavaLand](https://github.com/stevenzearo/ichat/tree/master/docs/img/frenzied_java_land.jpg)
 
 ## 项目结构
 ```
@@ -57,4 +57,4 @@ This project is an opensource project, project source code published on GitHub, 
 我们会在第一时间Review你的代码，一起探讨需要更改的地方。  
 代码Review的形式取决于据开发人员的实际条件，我们欢迎以视频会议的形式进行。  
 当然不方便的小伙伴，我们也会直接在GitHub上对应的Pull Request中的记录上提前进行评论。  
-参考： ![Git最佳实践](docs/img/git_flow.png)
+参考： ![Git最佳实践](https://github.com/stevenzearo/ichat/tree/master/docs/img/git_flow.png)
