@@ -4,6 +4,7 @@ import app.site.model.common.XMLUtil;
 import app.site.model.receive.ReceivedMessage;
 import app.site.model.reply.ReplyingMessage;
 import app.site.service.messagehandler.MessageHandlerFactory;
+import app.web.error.ConflictException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.xml.bind.JAXBContext;
@@ -33,7 +34,7 @@ public class ChatService {
     }
 
     private byte[] replyMessage(ReplyingMessage replyingMessage) {
-        if (replyingMessage == null) return new byte[]{}; // maybe just return 200
+        if (replyingMessage == null) throw new ConflictException("Replying message is empty!"); // error handler will handle this error and return empty string to client
         ByteArrayOutputStream byteArrayOutputStream = null;
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(ReplyingMessage.class);

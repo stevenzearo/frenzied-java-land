@@ -12,5 +12,11 @@ public enum EventType {
     @XmlEnumValue("subscribe")
     SUBSCRIBE,
     @XmlEnumValue("unsubscribe")
-    UNSUBSCRIBE
+    UNSUBSCRIBE,
+    @XmlEnumValue("SCAN")
+    SCAN,
+    @XmlEnumValue("VIEW")
+    VIEW,
+    @XmlEnumValue("LOCATION")
+    LOCATION
 }

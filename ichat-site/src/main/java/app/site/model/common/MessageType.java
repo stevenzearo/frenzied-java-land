@@ -8,8 +8,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * @author Steve Zou
  */
-@XmlType()
-@XmlEnum(String.class)
+@XmlEnum
 public enum MessageType implements Serializable {
     @XmlEnumValue("text")
     TEXT("text"),
@@ -21,6 +20,8 @@ public enum MessageType implements Serializable {
     VOICE("voice"),
     @XmlEnumValue("video")
     VIDEO("video"),
+    @XmlEnumValue("shortvideo")
+    SHORT_VIDEO("shortvideo"),
     @XmlEnumValue("music")
     MUSIC("music"),
     @XmlEnumValue("news")

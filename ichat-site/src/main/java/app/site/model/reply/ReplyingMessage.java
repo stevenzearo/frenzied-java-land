@@ -2,7 +2,8 @@ package app.site.model.reply;
 
 import app.site.model.common.MessageType;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElements;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -25,12 +26,12 @@ public class ReplyingMessage {
     @XmlElement(name = "ArticleCount")
     public Integer articleCount;
 
-    @XmlElements({
-        @XmlElement(type = Image.class),
-        @XmlElement(type = Voice.class),
-        @XmlElement(type = Music.class),
-        @XmlElement(type = Video.class),
-        @XmlElement(type = Article.class),
+    @XmlElementRefs({
+        @XmlElementRef(type = Image.class),
+        @XmlElementRef(type = Voice.class),
+        @XmlElementRef(type = Music.class),
+        @XmlElementRef(type = Video.class),
+        @XmlElementRef(type = Article.class),
     })
     public Media media;
 }

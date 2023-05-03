@@ -1,7 +1,7 @@
 package app.site.service.messagehandler;
 
 import app.site.model.common.EventType;
-import app.site.model.receive.ReceivedMessage;
+import app.site.model.receive.EventMessage;
 import app.site.model.reply.ReplyingMessage;
 import app.site.model.reply.ReplyingMessageBuilder;
 import app.web.error.WebException;
@@ -13,19 +13,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 /**
  * @author simple
  */
 @Component
-public class EventMessageHandler extends AbstractMessageHandler {
+public abstract class EventMessageHandler<T extends EventMessage> extends AbstractMessageHandler<T> {
     private final Set<String> cache = new HashSet<>();
     private final Set<String> subscribers = new HashSet<>();
     private final Logger logger = LoggerFactory.getLogger(EventMessageHandler.class);
 
     @Override
-    protected ReplyingMessage innerHandle(ReceivedMessage message) {
+    protected ReplyingMessage innerHandle(T message) {
         checkRequested(message);
         if (message.event == EventType.SUBSCRIBE) {
             subscribers.add(message.fromUserName);
@@ -36,16 +35,16 @@ public class EventMessageHandler extends AbstractMessageHandler {
     }
 
     @Override
-    protected void checkMessage(ReceivedMessage message) {
+    protected void checkMessage(T message) {
 
     }
 
-    private ReplyingMessage welcomeMessage(ReceivedMessage message) {
+    private ReplyingMessage welcomeMessage(T message) {
         String welcomeStr = "你好，欢迎关注野生程序员聚集地";
         return new ReplyingMessageBuilder(message).text(welcomeStr);
     }
 
-    private void checkRequested(ReceivedMessage message) {
+    private void checkRequested(T message) {
         String requestId = String.format("%s-%s", message.fromUserName, message.createTime);
         if (cache.contains(requestId)) {
             throw new WebException("duplicated request");

@@ -10,7 +10,7 @@ import java.util.UUID;
 public class ReplyingMessageBuilder {
     private final ReplyingMessage replyingMessage;
 
-    public ReplyingMessageBuilder(ReceivedMessage receivedMessage) {
+    public <T extends ReceivedMessage> ReplyingMessageBuilder(T receivedMessage) {
         ReplyingMessage replyingMessage = new ReplyingMessage();
         replyingMessage.fromUserName = receivedMessage.toUserName;
         replyingMessage.toUserName = receivedMessage.fromUserName;
@@ -51,8 +51,8 @@ public class ReplyingMessageBuilder {
 
     public ReplyingMessage articles(Article article) {
         replyingMessage.msgType = MessageType.NEWS;
-        replyingMessage.media = article;
         replyingMessage.articleCount = article.items.size();
+        replyingMessage.media = article;
         return replyingMessage;
     }
 }

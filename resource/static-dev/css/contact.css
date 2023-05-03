@@ -1,0 +1,42 @@
+div.contact-sec h5 span {
+    color: #002157;
+    /*border-bottom: 1px solid;*/
+    text-decoration: none;
+    font-weight: 600;
+}
+
+div.contact-sec div {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 28px;
+    margin-bottom: 40px;
+    vertical-align: baseline;
+}
+div.contact-sec div div.table-cell {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    horiz-align: center;
+}
+
+div.contact-sec * span {
+    color: #002157;
+    /*border-bottom: 1px solid;*/
+    text-decoration: none;
+    font-weight: 600;
+}
+
+div.introduction * a {
+    color: #002157;
+    border-bottom: 1px solid;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+div.introduction p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 28px;
+    margin-bottom: 40px;
+    vertical-align: baseline;
+}
