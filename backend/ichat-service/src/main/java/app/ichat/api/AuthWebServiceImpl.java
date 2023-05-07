@@ -16,7 +16,7 @@ public class AuthWebServiceImpl implements AuthWebService {
     AuthService authService;
 
     @Override
-    public Response<String> getAccessToken() {
-        return ResponseHelper.okOf(authService.getAccessToken());
+    public Response<String> getAccessToken(Boolean renew) {
+        return ResponseHelper.okOf(authService.getAccessToken(renew));
     }
 }

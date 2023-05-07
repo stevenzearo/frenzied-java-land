@@ -33,13 +33,22 @@ public class AuthService {
     @Autowired
     ObjectMapper mapper;
 
-    public String getAccessToken() {
-        if (isValidToken(accessTokenCache)) return accessTokenCache.accessToken;
-        synchronized (lock) {
-            if (!isValidToken(accessTokenCache)) {
+    public String getAccessToken(Boolean renew) {
+        if (Boolean.TRUE.equals(renew)) {
+            synchronized (lock) {
                 accessTokenCache = getAppAccessToken();
+                return accessTokenCache.accessToken;
             }
+        }
+        if (isValidToken(accessTokenCache)) {
             return accessTokenCache.accessToken;
+        } else {
+            synchronized (lock) {
+                if (!isValidToken(accessTokenCache)) {
+                    accessTokenCache = getAppAccessToken();
+                }
+                return accessTokenCache.accessToken;
+            }
         }
     }
 

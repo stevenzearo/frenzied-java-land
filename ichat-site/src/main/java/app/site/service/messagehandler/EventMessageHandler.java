@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +23,8 @@ public abstract class EventMessageHandler<T extends EventMessage> extends Abstra
     private final Set<String> cache = new HashSet<>();
     private final Set<String> subscribers = new HashSet<>();
     private final Logger logger = LoggerFactory.getLogger(EventMessageHandler.class);
+    @Autowired
+    ObjectMapper mapper;
 
     @Override
     protected ReplyingMessage innerHandle(T message) {
@@ -54,6 +57,6 @@ public abstract class EventMessageHandler<T extends EventMessage> extends Abstra
 
     @Scheduled(cron = "0 * 0/1 * * *")
     public void printSubscribers() throws JsonProcessingException {
-        logger.info("Subscribers=>[" + new ObjectMapper().writeValueAsString(subscribers) + "]");
+        logger.info("Subscribers=>[" + mapper.writeValueAsString(subscribers) + "]");
     }
 }

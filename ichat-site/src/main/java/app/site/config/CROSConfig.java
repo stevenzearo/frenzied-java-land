@@ -1,6 +1,10 @@
 package app.site.config;
 
+import app.site.web.CROSFilter;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -12,8 +16,20 @@ public class CROSConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/hland/**")
-            .allowedOriginPatterns("*localhost*", "*fjavaland*");
+        registry.addMapping("/**")
+            .allowedOriginPatterns("*")
+//            .allowedOriginPatterns("*")
+            .allowedMethods(HttpMethod.GET.name(), HttpMethod.PUT.name(),
+                HttpMethod.POST.name(), HttpMethod.PATCH.name(), HttpMethod.OPTIONS.name());
         WebMvcConfigurer.super.addCorsMappings(registry);
     }
+/*
+    @Bean
+    public FilterRegistrationBean<CROSFilter> crosFilter() {
+        FilterRegistrationBean<CROSFilter> registrationBean = new FilterRegistrationBean<>();
+        CROSFilter crosFilter = new CROSFilter();
+        registrationBean.setFilter(crosFilter);
+        registrationBean.setOrder(1);
+        return registrationBean;
+    }*/
 }

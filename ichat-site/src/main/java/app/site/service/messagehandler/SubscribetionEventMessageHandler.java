@@ -55,6 +55,6 @@ public final class SubscribetionEventMessageHandler extends EventMessageHandler<
 
     @Scheduled(cron = "0 * 0/1 * * *")
     public void printSubscribers() throws JsonProcessingException {
-        logger.info("Subscribers=>[" + new ObjectMapper().writeValueAsString(subscribers) + "]");
+        logger.info("Subscribers=>[" + mapper.writeValueAsString(subscribers) + "]");
     }
 }

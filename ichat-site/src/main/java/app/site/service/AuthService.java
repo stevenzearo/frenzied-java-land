@@ -48,7 +48,7 @@ public class AuthService {
         }
     }
 
-    public String getAccessToken() {
-        return ResponseHelper.fetchDataWithException(authWebService.getAccessToken());
+    public String getAccessToken(Boolean renew) {
+        return ResponseHelper.fetchDataWithException(authWebService.getAccessToken(renew));
     }
 }

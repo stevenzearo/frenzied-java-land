@@ -5,11 +5,13 @@ import app.ichat.api.material.Material;
 import app.ichat.api.material.MaterialContent;
 import app.ichat.api.material.SearchMaterialRequest;
 import app.ichat.api.material.SearchMaterialResponse;
+import app.ichat.service.wechat.WeChatError;
 import app.ichat.service.wechat.WeChatMaterialContent;
 import app.ichat.service.wechat.WeChatSearchMaterialRequest;
 import app.ichat.service.wechat.WeChatSearchMaterialResponse;
 import app.ichat.service.wechat.WechatMaterialType;
 import app.web.error.WeChatIntegrationException;
+import app.web.error.WebErrorCodes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.stream.Collectors;
@@ -58,7 +60,18 @@ public class WeChatMaterialService {
             HttpEntity entity = httpResponse.getEntity();
             responseStr = new String(entity.getContent().readAllBytes());
             logger.info("Wechat material response: {}", responseStr);
-            return mapper.readValue(responseStr, WeChatSearchMaterialResponse.class);
+            if (responseStr.startsWith("{\"errcode\"")) {
+                WeChatError weChatError = mapper.readValue(responseStr, WeChatError.class);
+                if (WeChatError.ErrorCode.TOKEN_EXPIRED.value.equals(weChatError.errorCode)) {
+                    throw new WeChatIntegrationException(WebErrorCodes.WECHAT_TOKEN_EXPIRED, "Search wechat material failed, errorMsg=" + responseStr);
+                } else if (WeChatError.ErrorCode.TOKEN_INVALID.value.equals(weChatError.errorCode)) {
+                    throw new WeChatIntegrationException(WebErrorCodes.WECHAT_TOKEN_INVALID, "Search wechat material failed, errorMsg=" + responseStr);
+                } else {
+                    throw new WeChatIntegrationException("Search wechat material failed, errorMsg=" + responseStr);
+                }
+            } else {
+                return mapper.readValue(responseStr, WeChatSearchMaterialResponse.class);
+            }
         } catch (IOException e) {
             throw new WeChatIntegrationException(String.format("Failed to get image, url=%s, responseStr=%s", url, responseStr), e);
         }

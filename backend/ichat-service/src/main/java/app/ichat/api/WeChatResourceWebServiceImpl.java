@@ -30,6 +30,6 @@ public class WeChatResourceWebServiceImpl implements WeChatResourceWebService {
 
     @Override
     public Response<SearchMaterialResponse> searchMaterial(String accessToken, SearchMaterialRequest request) {
-        return ResponseHelper.okOf(materialService.searchMaterial(accessToken, request));
+        return ResponseHelper.encloseWithException(() -> materialService.searchMaterial(accessToken, request));
     }
 }

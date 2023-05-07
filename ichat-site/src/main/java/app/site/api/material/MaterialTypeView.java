@@ -4,7 +4,7 @@ package app.site.api.material;
  * @author Steve Zou
  */
 public enum MaterialTypeView {
-    NEWS("news");
+    NEWS("NEWS");
 
     MaterialTypeView(String value) {
     }
