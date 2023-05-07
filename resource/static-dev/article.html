@@ -126,41 +126,6 @@
                 <div class="a-article">
                     <p><em>这儿什么也没发生。狗在等着出门，贼在等着老妇人，孩子们在等着上学，条子们在等着揍人......每个人都在等着更凉快的天气。而我，只是在等你。</em></p>
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;好久不见，甚是想念。</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;有些东西虽然没想过要坚持，但是能够坚持下去总是好的。</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;所以，今天，在我们久别重逢的今天，在我们即将结束这五天假期继续肩负生活重担准备明天返工的今天，我，特意给大家来讲一下Docker的入坑心得。指南很多，指北的应该不多。好了，不跟大家瞎扯了，切入正题了。</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;首先Docker，码头工人，大家能想到的是什么？集装箱，大邮轮。。。对，没错，今天就是来跟大家讲一下Docker这个词在国际经济贸易中的重要作用。对不起，又跑偏了。</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp; Docker简单来说就是一项容器化技术，那容器就是对程序及其依赖关系的封装。容器技术的优点大概有以下几点：</p>
-                    <ol style="list-style-type: decimal;" class="list-paddingleft-2">
-                        <li><p>与主机的操作系统共享资源，这相比虚拟机能极大节省计算机的计算资源，提高运行效率。</p></li>
-                        <li><p>可移植性，简单来讲就是说，相同的应用程序经过容器化封装后，在不同的计算机上执行的结果会是相同的。</p></li>
-                        <li><p>轻量的，相比虚拟机，容器技术无需再重复构建不同的虚拟机操作系统，来构建运行时所需要的环境。</p></li>
-                        <li><p>部署方便，在下载并执行应用程序时，无需构建复杂的运行环境，程序运行所需环境封装在容器当中。</p></li>
-                    </ol>
-                    <p>容器技术相比虚拟机技术的差别，下面两张图能够清晰地展现出两者的差别：<br/></p>
-                    <p style="text-align: center;"><img class="rich_pages" data-backh="297" data-backw="264"
-                                                        data-galleryid="" data-ratio="1.125" data-s="300,640"
-                                                        data-src="https://mmbiz.qpic.cn/mmbiz_png/ELky4v3NzuM9h8E8icdDUDHDCYge9SpY0o7RicOicibu6KnkybF4qB0qfMshu44z8TM3GYjy0ucI9rWoyxMaqUIbYA/640?wx_fmt=png"
-                                                        data-type="png" data-w="488" style="width: 100%;height: auto;"/><img
-                            class="rich_pages" data-backh="304" data-backw="248" data-galleryid=""
-                            data-ratio="1.2266666666666666" data-s="300,640"
-                            data-src="https://mmbiz.qpic.cn/mmbiz_png/ELky4v3NzuM9h8E8icdDUDHDCYge9SpY0LW5ND352WPIDyJicQbV9eOVkqYsBKmp6MfqUUE44vvQmePf6H3c2dTQ/640?wx_fmt=png"
-                            data-type="png" data-w="450" style="width: 100%;height: auto;"/></p>
-                    <p>
-                        Docker则是2010年之后迅速崛起的一项容器化技术。Docker的一项核心技术就是联合文件系统，它可以将多个文件系统叠加，并表现为一个单一的文件系统。Docker运行一个程序需要根据程序封装的镜像去创建容器，然后再运行这个容器。镜像，是由多个不同的层组成，每个层都是一个只读的文件系统。Dockerfile里面的每个指令都会创建一个新的层，而将这个层位于前一个层只是，简单讲，就是说每个指令都会生成一个类似快照的文件系统。容器是镜像在运行时的表现，容器的状态可以是create,
-                        restarting, running, paused, exited. Docker的系统架构大概如下图：<br/></p>
-                    <p style="text-align: left;"><img class="rich_pages" data-galleryid=""
-                                                      data-ratio="0.8996188055908514" data-s="300,640"
-                                                      data-src="https://mmbiz.qpic.cn/mmbiz_png/ELky4v3NzuM9h8E8icdDUDHDCYge9SpY0c0u53tn87CMM3fu5ia8PLxyJKt5CLRYBnwOjv70FPjyGOOlBKslqOsw/640?wx_fmt=png"
-                                                      data-type="png" data-w="787" style=""/>
-                        Docker守护进程主要负责容器的创建运行和监控以及镜像的构建和存储，寄存服务则负责存储和发布镜像，客户端则通过Http协议与Docker守护进程通信。<br/></p>
-                    <p style="text-align: left;">今天主要就是给大家讲一下docker的一些基础概念，具体的实践方面的东西，以后有机会再和大家分享吧，后会有期。
-                        <img
-                            data-ratio="1"
-                            data-src="https://mmbiz.qpic.cn/mmbiz_png/ELky4v3NzuM9h8E8icdDUDHDCYge9SpY05W2TcmmrBqGYeP3pCnOj33TnzUC5meXvXyKC0wBJrL8GIW9MBicxWKw/640?wx_fmt=png"
-                            data-type="png" data-w="20"
-                            style="display:inline-block;width:20px;vertical-align:text-bottom;"/></p>
-
-
                 </div>
                 <a href="" class="readmore-btn">Continue...</a>
             </div>
@@ -466,12 +431,14 @@
     </div>
 </footer>
 <script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/axios.min.js"></script>
 <script type="text/javascript" src="js/lib/bootstrap.min.js">
 </script>
 <script defer src="js/lib/all.js"></script>
 <script type="text/javascript" src="js/lib/custom.js"></script>
 <script type="text/javascript" src="js/lib/jweixin-1.6.0.js"></script>
 <script type="text/javascript" src="js/set_common.js"></script>
+<script type="text/javascript" src="js/data.js"></script>
 <script type="text/javascript" src="js/article.js"></script>
 </body>
 

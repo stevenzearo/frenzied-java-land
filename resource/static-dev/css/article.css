@@ -1,5 +1,3 @@
-.rich_pages {
-    display: inline-block;
-    height: 100px;
-    width: 100px;
+div.post_item * img {
+    margin-bottom: auto;
 }
