@@ -1,22 +1,19 @@
 package app.site.api;
 
+import app.ichat.api.WeChatResourceWebService;
 import app.site.api.image.GetImageRequest;
 import app.site.api.image.GetImageResponse;
-import app.web.error.TuringIntegrationException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.IOException;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import app.web.response.Response;
+import app.web.response.ResponseHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,27 +24,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/image")
 public class ImageController {
     private final Logger logger = LoggerFactory.getLogger(ImageController.class);
+    @Autowired
+    WeChatResourceWebService resourceWebService;
+
+    @Deprecated
     @ResponseBody
     @CrossOrigin("*")
     @PutMapping("/article-image")
     public GetImageResponse getImage(@RequestBody GetImageRequest request) {
+        return boGetGetImage(request.url);
+    }
 
-        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            ObjectMapper mapper = new ObjectMapper();
-            String reqEntity = mapper.writeValueAsString(request);
-            logger.info("chat request entity: {}", reqEntity);
+    @ResponseBody
+    @CrossOrigin({"http://localhost", "https://localhost", "https://fjavaland*.cpolar.top"})
+    @GetMapping("/article-image")
+    public GetImageResponse getImage(@RequestParam("url") String url) {
+        return boGetGetImage(url);
+    }
 
-            HttpUriRequest httpRequest = RequestBuilder.get()
-                .setUri(request.url)
-                .build();
-            CloseableHttpResponse httpResponse = httpClient.execute(httpRequest);
-
-            HttpEntity entity = httpResponse.getEntity();
-            GetImageResponse response = new GetImageResponse();
-            response.data = entity.getContent().readAllBytes();
-            return response;
-        } catch (IOException e) {
-            throw new TuringIntegrationException("Failed to chat with Turing platform.", e);
-        }
+    private GetImageResponse boGetGetImage(String url) {
+        Response<byte[]> image = resourceWebService.getImage(url);
+        byte[] data = ResponseHelper.fetchDataWithException(image);
+        GetImageResponse response = new GetImageResponse();
+        response.data = data;
+        return response;
     }
 }

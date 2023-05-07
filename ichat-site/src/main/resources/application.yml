@@ -48,13 +48,17 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${eureka.client.eureka-server-port}/eureka/
     register-with-eureka: false
     fetch-registry: true
-
+ichatService:
+  host: http://localhost:8401
 ribbon:
   eureka:
     enabled: true
 AuthWebService:
   ribbon:
-    listOfService: http://localhost:8401
+    listOfService: ${ichatService.host}
 ChatWebService:
   ribbon:
-    listOfService: http://localhost:8401
+    listOfService: ${ichatService.host}
+WeChatResourceWebService:
+  ribbon:
+    listOfService: ${ichatService.host}
