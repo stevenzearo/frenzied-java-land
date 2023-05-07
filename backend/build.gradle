@@ -22,8 +22,8 @@ project(':backend:ichat-service-interface') {
         implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
         implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
 
-        implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
-        implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
+//        implementation("org.springframework.boot:spring-boot-starter:$springBootVersion")
+//        implementation("org.springframework.boot:spring-boot-autoconfigure:$springBootVersion")
 
         implementation("org.springframework.cloud:spring-cloud-starter:$springCloudVersion")
         implementation("org.springframework.cloud:spring-cloud-context:$springCloudVersion")

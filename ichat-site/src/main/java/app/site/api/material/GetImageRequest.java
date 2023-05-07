@@ -1,4 +1,4 @@
-package app.site.api.image;
+package app.site.api.material;
 
 /**
  * @author Steve Zou

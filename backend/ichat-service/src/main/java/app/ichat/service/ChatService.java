@@ -21,6 +21,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,8 @@ import org.springframework.stereotype.Service;
 public class ChatService {
     private final Logger logger = LoggerFactory.getLogger(ChatService.class);
     private static final String TRUING_CHAT_URL = "http://chatbot-api.turingapi.com/v1/wechat";
+    @Autowired
+    private ObjectMapper mapper;
 
     public ChatResponse chat(String id, ChatRequest request) {
         TuringChatRequest turingChatRequest = new TuringChatRequest();
@@ -45,7 +48,6 @@ public class ChatService {
 
     public TuringChatResponse chatToTuring(TuringChatRequest turingChatRequest) {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            ObjectMapper mapper = new ObjectMapper();
             String reqEntity = mapper.writeValueAsString(turingChatRequest);
             logger.info("chat request entity: {}", reqEntity);
             StringEntity stringEntity = new StringEntity(reqEntity, ContentType.APPLICATION_JSON);

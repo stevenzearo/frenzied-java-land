@@ -1,18 +1,22 @@
 package app.ichat.api;
 
+import app.ichat.api.material.SearchMaterialRequest;
+import app.ichat.api.material.SearchMaterialResponse;
 import app.web.response.Response;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Steve Zou
  */
-@RestController
 @FeignClient(value = "ichat-service", qualifiers = "wechat-resource-web-service")
 public interface WeChatResourceWebService {
-    @RequestMapping(value = "/wechat/image", method = RequestMethod.GET)
+    @GetMapping(value = "/wechat/image")
     Response<byte[]> getImage(@RequestParam("url") String url);
+
+    @PostMapping(value = "/wechat/material")
+    Response<SearchMaterialResponse> searchMaterial(@RequestParam("access_token") String accessToken, @RequestBody SearchMaterialRequest request);
 }

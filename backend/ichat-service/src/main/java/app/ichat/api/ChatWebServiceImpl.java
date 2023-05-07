@@ -7,11 +7,12 @@ import app.web.response.Response;
 import app.web.response.ResponseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Steve Zou
  */
-@Component
+@RestController
 public class ChatWebServiceImpl implements ChatWebService {
     @Autowired
     ChatService chatService;

@@ -20,7 +20,6 @@ public class WeChatImageService {
     private final Logger logger = LoggerFactory.getLogger(WeChatImageService.class);
 
     public byte[] getImage(String url) {
-        logger.info("chat request url: {}", url);
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpUriRequest httpRequest = RequestBuilder.get()
                 .setUri(url)

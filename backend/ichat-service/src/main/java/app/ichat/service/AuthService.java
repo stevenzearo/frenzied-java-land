@@ -30,6 +30,8 @@ public class AuthService {
     private AccessTokenCache accessTokenCache;
     @Autowired
     private WeChatPublicAccountConfig accountConfig;
+    @Autowired
+    ObjectMapper mapper;
 
     public String getAccessToken() {
         if (isValidToken(accessTokenCache)) return accessTokenCache.accessToken;
@@ -61,7 +63,6 @@ public class AuthService {
             HttpEntity entity = httpResponse.getEntity();
             String s = EntityUtils.toString(entity);
             logger.info("Success get access_token from WeChat platform, response: {}", s);
-            ObjectMapper mapper = new ObjectMapper();
             response = mapper.readValue(s, WeChatAccessTokenResponse.class);
         } catch (IOException e) {
             throw new WeChatIntegrationException("Failed to get access_token from WeChat platform.", e);

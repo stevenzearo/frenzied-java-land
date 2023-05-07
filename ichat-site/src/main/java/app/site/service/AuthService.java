@@ -1,13 +1,16 @@
 package app.site.service;
 
+import app.ichat.api.AuthWebService;
 import app.util.EncryptException;
 import app.util.EncryptHelper;
+import app.web.response.ResponseHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,6 +20,8 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private static final String TOKEN = "aabc";
     private final Logger logger = LoggerFactory.getLogger(AuthService.class);
+    @Autowired
+    AuthWebService authWebService;
 
     public String auth(String signature, String timestamp, String nonce, String echoStr) {
         if (signature == null || signature.trim().isEmpty()) {
@@ -44,7 +49,6 @@ public class AuthService {
     }
 
     public String getAccessToken() {
-        // todo
-        return "";
+        return ResponseHelper.fetchDataWithException(authWebService.getAccessToken());
     }
 }
