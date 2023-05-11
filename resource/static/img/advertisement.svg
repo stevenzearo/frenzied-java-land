@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1046"
+   height="104"
+   viewBox="0 0 33 20"
+   version="1.1"
+   id="svg191693"
+   sodipodi:docname="drawing-1.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview191695"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:snap-text-baseline="true"
+     inkscape:zoom="2.587037"
+     inkscape:cx="119.24839"
+     inkscape:cy="35.175376"
+     inkscape:window-width="1920"
+     inkscape:window-height="935"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     units="px"
+     inkscape:snap-grids="true"
+     scale-x="1" />
+  <defs
+     id="defs191690">
+    <rect
+       x="-14.782407"
+       y="-23.820612"
+       width="876.6698"
+       height="1146.7628"
+       id="rect423631" />
+    <rect
+       x="-28.784739"
+       y="-2.8676634"
+       width="1031.8177"
+       height="1128.2638"
+       id="rect410623" />
+    <rect
+       x="223.70284"
+       y="195.18416"
+       width="480.07224"
+       height="252.33015"
+       id="rect310330" />
+    <rect
+       x="489.01956"
+       y="805.68909"
+       width="433.63937"
+       height="249.0116"
+       id="rect306004" />
+    <rect
+       x="437.86707"
+       y="549.18219"
+       width="104.5392"
+       height="35.055431"
+       id="rect224268" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:16.9333px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="76.792137"
+       y="84.225235"
+       id="text205546"><tspan
+         sodipodi:role="line"
+         id="tspan205544"
+         style="font-size:16.9333px;fill:#cccccc;stroke-width:0.264583"
+         x="76.792137"
+         y="84.225235" /></text>
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text224266"
+       style="font-size:24px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;white-space:pre;shape-inside:url(#rect224268)" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text306002"
+       style="font-size:24px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;white-space:pre;shape-inside:url(#rect306004)" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text310328"
+       style="font-size:24px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;white-space:pre;shape-inside:url(#rect310330)" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text410621"
+       style="font-size:24px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;white-space:pre;shape-inside:url(#rect410623)" />
+    <text
+       xml:space="preserve"
+       transform="scale(0.26458333)"
+       id="text423629"
+       style="font-size:24px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;white-space:pre;shape-inside:url(#rect423631)" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;stroke-width:0.264583"
+       x="0.25777608"
+       y="33.005562"
+       id="text483847"><tspan
+         sodipodi:role="line"
+         id="tspan483845"
+         style="fill:#cccccc;stroke-width:0.264583"
+         x="0.25777608"
+         y="33.005562" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.35px;line-height:1.25;font-family:Sans;-inkscape-font-specification:'Sans, Normal';font-variant-ligatures:none;stroke-width:0.264583;fill:#cccccc"
+       x="0.24745767"
+       y="10.10151"
+       id="text533129"><tspan
+         sodipodi:role="line"
+         id="tspan533127"
+         style="fill:#cccccc;stroke-width:0.264583"
+         x="0.24745767"
+         y="10.10151">广告位招租</tspan></text>
+  </g>
+</svg>
