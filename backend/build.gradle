@@ -50,7 +50,7 @@ project(':backend:ichat-service') {
 //        implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisVersion")
 //        implementation("org.springframework.boot:spring-boot-starter-jdbc:$springBootVersion")
 //        implementation("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
-//        implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion")
+        implementation("org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion")
 //        implementation("org.springframework.kafka:spring-kafka:$kafkaVersion")
 //        implementation("org.springframework.data:spring-data-mongodb:$springDataMongoVersion")
         implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springCloudVersion") {
@@ -62,11 +62,16 @@ project(':backend:ichat-service') {
     }
 }
 
-
-
 project(':backend:ichat-service-db-migration') {
     dependencies {
         implementation("mysql:mysql-connector-java:$mysqlVersion")
+        implementation('org.flywaydb:flyway-gradle-plugin:6.1.3')
+    }
+}
+
+project(':backend:ichat-service-mongo-migration') {
+    dependencies {
+        implementation('org.mongodb:mongo-java-driver:3.12.12')
         implementation('org.flywaydb:flyway-gradle-plugin:6.1.3')
     }
 }

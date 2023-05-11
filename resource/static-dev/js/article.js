@@ -23,12 +23,24 @@ $(function () {
             let materials = data.materials;
             for (let i = 0; i < materials.length; i++) {
                 var material = materials[i]
+                let articleData = material.content.articles[0];
+
                 var title = $(articleTemplate).find("h2 a")
-                $(title).text(material.content.articles[0].title)
-                var articleImgSrc = material.content.articles[0].thumbUrl
-                // console.log(articleImgSrc)
+                $(title).text(articleData.title)
+
+                var author = $(articleTemplate).find("li.admin a")
+                $(author).text(articleData.author)
+
+                var date = $(articleTemplate).find("li.date a")
+                $(date).text(material.content.createdTime)
+
+                var digest = $(articleTemplate).find("h6")
+                $(digest).text(articleData.digest)
+
+                var articleImgSrc = articleData.thumbUrl
                 let img = $(articleTemplate).find("img");
                 $(img).attr("data-src", articleImgSrc)
+
                 let content = "<div class='post_item'>" + $(articleTemplate).html() + "</div>";
                 parent.append(content)
             }
