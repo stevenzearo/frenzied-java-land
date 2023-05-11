@@ -13,6 +13,7 @@ import app.site.model.reply.ArticleItem;
 import app.site.model.reply.ReplyingMessage;
 import app.site.model.reply.ReplyingMessageBuilder;
 import app.site.service.ChatCacheService;
+import app.util.EncryptHelper;
 import app.web.error.ConflictException;
 import app.web.error.WebException;
 import app.web.response.Response;
@@ -101,7 +102,7 @@ public final class TextMessageHandler extends AbstractMessageHandler<TextMessage
         chatRequest.text = message.content;
         String fromUserName = message.fromUserName;
         ChatCache chatCache = chatCacheService.connect(fromUserName);
-        String chatId = Integer.toString((chatCache.userId + chatCache.salt).hashCode());
+        String chatId = EncryptHelper.encryptToMD5Len16(chatCache.userId + chatCache.salt);
         Response<ChatResponse> response = chatWebService.chat(chatId, chatRequest);
         return ResponseHelper.fetchDataWithException(response);
     }

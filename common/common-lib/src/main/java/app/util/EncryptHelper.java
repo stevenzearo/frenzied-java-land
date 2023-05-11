@@ -10,6 +10,27 @@ import java.util.List;
  * @author steve
  */
 public class EncryptHelper {
+    // ref: https://www.jianshu.com/p/ad69e4067841
+    public static String encryptToMD5Len16(String origin) {
+        MessageDigest digest;
+        String algorithmName = "SHA-256";
+        try {
+            digest = MessageDigest.getInstance(algorithmName);
+        } catch (NoSuchAlgorithmException e) {
+            throw new PasswordEncryptException(String.format("no such algorithm, name = %s", algorithmName), e);
+        }
+        digest.update(origin.getBytes(StandardCharsets.UTF_8));
+        byte[] encryptedContext = digest.digest();
+        StringBuilder md5StrBuff = new StringBuilder();
+        for (byte b : encryptedContext) {
+            if (Integer.toHexString(0xFF & b).length() == 1)
+                md5StrBuff.append("0").append(Integer.toHexString(0xFF & b));
+            else
+                md5StrBuff.append(Integer.toHexString(0xFF & b));
+        }
+        return md5StrBuff.substring(8, 24);
+    }
+
     public static String encryptPassword(String originPassword, String salt, int iterated_times) throws PasswordEncryptException {
         MessageDigest digest;
         String algorithmName = "SHA-256";
