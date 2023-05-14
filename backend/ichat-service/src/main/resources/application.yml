@@ -1,6 +1,9 @@
 spring:
   application:
     name: ichat-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/ichat
   cloud:
     config:
       enabled: false
