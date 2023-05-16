@@ -1,6 +1,7 @@
 package app.ichat.api;
 
-import app.ichat.api.article.MyCollectionView;
+import app.ichat.api.article.ArticleSummaryView;
+import app.ichat.api.article.ArticleView;
 import app.ichat.service.article.ArticleService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,17 @@ public class ArticleWebServiceImpl implements ArticleWebService {
     ArticleService articleService;
 
     @Override
-    public List<MyCollectionView> findAll() {
+    public List<ArticleView> findAll() {
         return articleService.findAll();
+    }
+
+    @Override
+    public List<ArticleSummaryView> findAllSummaries() {
+        return articleService.findAllSummaries();
+    }
+
+    @Override
+    public void createArticle(ArticleView article) {
+        articleService.createArticle(article);
     }
 }
