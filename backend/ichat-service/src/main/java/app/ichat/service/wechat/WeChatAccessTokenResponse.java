@@ -1,14 +1,13 @@
 package app.ichat.service.wechat;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Steve Zou
  */
 public class WeChatAccessTokenResponse {
-    @JsonAlias(value = "access_token")
+    @JsonProperty(value = "access_token")
     public String accessToken;
-
-    @JsonAlias(value = "expires_in")
+    @JsonProperty(value = "expires_in")
     public Long expireIn;
 }

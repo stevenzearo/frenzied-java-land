@@ -1,6 +1,6 @@
 package app.site.api.material;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Steve Zou
@@ -10,13 +10,13 @@ public class ArticleView {
     public String author;
     public String digest;
     public String content;
-    @JsonAlias("content_source_url")
+    @JsonProperty("content_source_url")
     public String contentSourceUrl;
-    @JsonAlias("thumb_media_id")
+    @JsonProperty("thumb_media_id")
     public String thumbMediaId;
-    @JsonAlias("show_cover_pic")
+    @JsonProperty("show_cover_pic")
     public String showCoverPic;
     public String url;
-    @JsonAlias("thumb_url")
+    @JsonProperty("thumb_url")
     public String thumbUrl;
 }

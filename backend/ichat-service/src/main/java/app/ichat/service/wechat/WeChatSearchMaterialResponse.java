@@ -1,16 +1,16 @@
 package app.ichat.service.wechat;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * @author Steve Zou
  */
 public class WeChatSearchMaterialResponse {
-    @JsonAlias("item")
+    @JsonProperty("item")
     public List<WeChatMaterial> materials;
-    @JsonAlias("total_count")
+    @JsonProperty("total_count")
     public Integer totalCount;
-    @JsonAlias("item_count")
+    @JsonProperty("item_count")
     public Integer itemCount;
 }

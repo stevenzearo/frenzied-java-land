@@ -6,7 +6,6 @@ import app.ichat.service.ChatService;
 import app.web.response.Response;
 import app.web.response.ResponseHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

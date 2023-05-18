@@ -1,14 +1,14 @@
 package app.ichat.service.wechat;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Steve Zou
  */
 public class WeChatError {
-    @JsonAlias("errcode")
+    @JsonProperty("errcode")
     public String errorCode;
-    @JsonAlias("errmsg")
+    @JsonProperty("errmsg")
     public String errorMsg;
 
     public enum ErrorCode {

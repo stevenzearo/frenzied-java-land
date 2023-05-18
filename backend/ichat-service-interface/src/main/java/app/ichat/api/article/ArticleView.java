@@ -1,29 +1,30 @@
 package app.ichat.api.article;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author Steve Zou
  */
 
 public class ArticleView {
+    @JsonProperty("id")
     public String id;
-    @JsonAlias("title")
+    @JsonProperty("title")
     public String title;
-    @JsonAlias("author")
+    @JsonProperty("author")
     public String author;
-    @JsonAlias("digest")
+    @JsonProperty("digest")
     public String digest;
-    @JsonAlias("content")
+    @JsonProperty("content")
     public String content;
-    @JsonAlias("content_source_url")
+    @JsonProperty("content_source_url")
     public String contentSourceUrl;
-    @JsonAlias("thumb_media_id")
+    @JsonProperty("thumb_media_id")
     public String thumbMediaId;
-    @JsonAlias("show_cover_pic")
+    @JsonProperty("show_cover_pic")
     public String showCoverPic;
-    @JsonAlias("url")
+    @JsonProperty("url")
     public String url;
-    @JsonAlias("thumb_url")
+    @JsonProperty("thumb_url")
     public String thumbUrl;
 }

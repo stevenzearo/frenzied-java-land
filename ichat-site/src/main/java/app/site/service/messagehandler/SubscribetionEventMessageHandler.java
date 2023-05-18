@@ -6,7 +6,6 @@ import app.site.model.reply.ReplyingMessage;
 import app.site.model.reply.ReplyingMessageBuilder;
 import app.web.error.WebException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.HashSet;
 import java.util.Set;
 import org.slf4j.Logger;

@@ -27,7 +27,7 @@ spring:
 #    timeout: 3000
 
 server:
-  port: 9090
+  port: 8080
   undertow:
     io-threads: 4
     worker-threads: 20
