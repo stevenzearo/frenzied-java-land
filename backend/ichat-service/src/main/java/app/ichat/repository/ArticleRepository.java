@@ -24,7 +24,22 @@ public class ArticleRepository {
         return mongoTemplate.find(query, ArticleSummary.class);
     }
 
+    public List<ArticleSummary> findSummaries(Integer skip, Integer limit) {
+        Query query = new Query();
+        if (skip != null) {
+            query.skip(skip);
+        }
+        if (limit != null) {
+            query.limit(limit);
+        }
+        return mongoTemplate.find(query, ArticleSummary.class);
+    }
+
     public void save(Article article) {
         mongoTemplate.save(article);
+    }
+
+    public Integer count() {
+        return (int) mongoTemplate.count(new Query(), Article.class);
     }
 }

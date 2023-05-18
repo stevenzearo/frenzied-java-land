@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8080"
+const BASE_URL = "http://localhost:9090"
 
 function sendRequest(url = "", queryParam = {}, requestBody = {}, method = "") {
 
@@ -16,48 +16,30 @@ function getAccessToken() {
 
 // 68_AhYqctYugAl6yRJQoybkPi_QkWGzQ8bY8XcRmQan9AMrV8TdTVoaAR7i6y15-xf1pJSXCW3Rq4dMiqe0AgUwIURSuGcVXD3XXqxxJAQJN-wZpd7RECNyRJddXRoJCKfAFAEXF
 function getArticles(func) {
-    var accessToken = localStorage.getItem("access_token")
-    if (accessToken == null) {
-        getAccessToken().then(function (response) {
-            let token = response.data;
-            console.log(token)
-            localStorage.setItem("access_token", token)
-            if (response.status !== 200) {
-                alert("获取Token失败！")
-                return new Promise()
-            } else {
-                return wechatGetMaterial(token, func)
-            }
-        })
-    } else {
-        return wechatGetMaterial(accessToken, func)
-    }
-}
-
-function wechatGetMaterial(accessToken = "", func) {
     var requestBody = {
-        type: "NEWS",
-        offset: 0,
-        count: 20
+        skip: 0,
+        limit: 100
     }
+
     let requestConfig = {
-        params: {
-            access_token: accessToken
-        },
         timeout: 30000,
         contentType: "application/json"
     };
 
-    return axios.post(BASE_URL + "/hland/material/article", requestBody, requestConfig).then(function (response) {
+    return axios({
+        url: BASE_URL + "/article/summary",
+        method: "put",
+        data: requestBody,
+        config: requestConfig
+    }).then(function (response) {
         func(response.data)
     }).catch(function (error) {
         console.log(JSON.stringify(error))
-
-        if (error.message.indexOf("412") >= 0 || error.message.indexOf("413") >= 0) {
-            localStorage.clear("access_token")
-        } else {
-        }
     })
+}
+
+function wechatGetMaterial(accessToken = "", func) {
+
 }
 
 function setCategory(title = "", url = "") {

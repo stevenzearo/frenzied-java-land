@@ -27,7 +27,7 @@ spring:
 #    timeout: 3000
 
 server:
-  port: 8080
+  port: 9090
   undertow:
     io-threads: 4
     worker-threads: 20
@@ -49,7 +49,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: true
 ichatService:
-  host: http://localhost:8401
+  host: http://localhost:8501
 ribbon:
   eureka:
     enabled: true
@@ -60,5 +60,8 @@ ChatWebService:
   ribbon:
     listOfService: ${ichatService.host}
 WeChatResourceWebService:
+  ribbon:
+    listOfService: ${ichatService.host}
+ArticleWebService:
   ribbon:
     listOfService: ${ichatService.host}

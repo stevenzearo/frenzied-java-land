@@ -2,10 +2,13 @@ package app.ichat.api;
 
 import app.ichat.api.article.ArticleSummaryView;
 import app.ichat.api.article.ArticleView;
+import app.ichat.api.article.SearchArticleSummaryRequest;
+import app.ichat.api.article.SearchArticleSummaryResponse;
 import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
@@ -15,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface ArticleWebService {
 
     @GetMapping("/article")
-    public List<ArticleView> findAll();
+    List<ArticleView> findAll();
 
     @GetMapping("/article/summary")
-    public List<ArticleSummaryView> findAllSummaries();
+    List<ArticleSummaryView> findAllSummaries();
+
+    @PutMapping("/article/summary")
+    SearchArticleSummaryResponse findSummaries(@RequestBody SearchArticleSummaryRequest request);
 
     @PostMapping("/article")
-    public void createArticle(@RequestBody ArticleView article);
+    void createArticle(@RequestBody ArticleView article);
 }

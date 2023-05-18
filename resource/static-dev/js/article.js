@@ -19,12 +19,11 @@ $(function () {
         var articleTemplate = $("section.blog-sec div div.main-content div.post_item")[0]
         let parent = $("section.blog-sec div div.main-content");
         parent.empty()
-        getArticles(function (data) {
-            let materials = data.materials;
-            for (let i = 0; i < materials.length; i++) {
-                var material = materials[i]
-                let articleData = material.content.articles[0];
 
+        getArticles(function (response) {
+            let articleSummaries = response.article_summaries;
+            for (let i = 0; i < articleSummaries.length; i++) {
+                let articleData = articleSummaries[i]
                 var title = $(articleTemplate).find("h2 a")
                 $(title).text(articleData.title)
 
@@ -32,12 +31,12 @@ $(function () {
                 $(author).text(articleData.author)
 
                 var date = $(articleTemplate).find("li.date a")
-                $(date).text(material.content.createdTime)
+                $(date).text(articleData.created_time)
 
                 var digest = $(articleTemplate).find("h6")
                 $(digest).text(articleData.digest)
 
-                var articleImgSrc = articleData.thumbUrl
+                var articleImgSrc = articleData.thumb_url
                 let img = $(articleTemplate).find("img");
                 $(img).attr("data-src", articleImgSrc)
 
