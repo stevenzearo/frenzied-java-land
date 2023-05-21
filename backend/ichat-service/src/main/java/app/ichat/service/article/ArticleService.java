@@ -19,6 +19,23 @@ import org.springframework.stereotype.Service;
 public class ArticleService {
     @Autowired
     ArticleRepository articleRepository;
+    public ArticleView get(String articleId) {
+        Article article = articleRepository.get(articleId);
+        if (article == null) return null;
+
+        ArticleView articleView = new ArticleView();
+        articleView.id = article.id.toString();
+        articleView.title = article.title;
+        articleView.author = article.author;
+        articleView.digest = article.digest;
+        articleView.content = article.content;
+        articleView.contentSourceUrl = article.contentSourceUrl;
+        articleView.thumbMediaId = article.thumbMediaId;
+        articleView.showCoverPic = article.showCoverPic;
+        articleView.url = article.url;
+        articleView.thumbUrl = article.thumbUrl;
+        return articleView;
+    }
 
     public List<ArticleView> findAll() {
         List<Article> collections = articleRepository.findAll();

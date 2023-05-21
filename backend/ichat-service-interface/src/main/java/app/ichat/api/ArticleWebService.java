@@ -4,9 +4,12 @@ import app.ichat.api.article.ArticleSummaryView;
 import app.ichat.api.article.ArticleView;
 import app.ichat.api.article.SearchArticleSummaryRequest;
 import app.ichat.api.article.SearchArticleSummaryResponse;
+import app.web.response.EmptyResponse;
+import app.web.response.Response;
 import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,16 +19,18 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 @FeignClient(value = "ichat-service", qualifiers = "article-web-service")
 public interface ArticleWebService {
+    @GetMapping("article/{id}")
+    Response<ArticleView> get(@PathVariable("id") String articleId);
 
     @GetMapping("/article")
-    List<ArticleView> findAll();
+    Response<List<ArticleView>> findAll();
 
     @GetMapping("/article/summary")
-    List<ArticleSummaryView> findAllSummaries();
+    Response<List<ArticleSummaryView>> findAllSummaries();
 
     @PutMapping("/article/summary")
-    SearchArticleSummaryResponse findSummaries(@RequestBody SearchArticleSummaryRequest request);
+    Response<SearchArticleSummaryResponse> findSummaries(@RequestBody SearchArticleSummaryRequest request);
 
     @PostMapping("/article")
-    void createArticle(@RequestBody ArticleView article);
+    EmptyResponse createArticle(@RequestBody ArticleView article);
 }

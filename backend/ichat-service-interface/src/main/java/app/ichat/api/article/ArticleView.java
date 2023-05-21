@@ -27,4 +27,5 @@ public class ArticleView {
     public String url;
     @JsonProperty("thumb_url")
     public String thumbUrl;
+//    @JsonProperty("")
 }
