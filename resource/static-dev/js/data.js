@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:9090"
+const BASE_URL = "http://localhost:8080"
 
 function sendRequest(url = "", queryParam = {}, requestBody = {}, method = "") {
 
@@ -7,6 +7,12 @@ function sendRequest(url = "", queryParam = {}, requestBody = {}, method = "") {
 function getImage(src = "") {
     let url = BASE_URL + "/hland/material/article-image";
     return axios.get(url, {params: {url: src}})
+}
+
+function setImage(img, src) {
+    getImage(src).then(function (response) {
+        $(img).attr("src", "data:img/png;base64," + response.data.data)
+    })
 }
 
 function getAccessToken() {
@@ -37,9 +43,21 @@ function getArticles(func) {
         console.log(JSON.stringify(error))
     })
 }
+function getArticle(article_id = "", func) {
+    let requestConfig = {
+        timeout: 30000,
+        contentType: "application/json"
+    };
 
-function wechatGetMaterial(accessToken = "", func) {
-
+    return axios({
+        url: BASE_URL + "/article/" + article_id,
+        method: "get",
+        config: requestConfig
+    }).then(function (response) {
+        func(response.data)
+    }).catch(function (error) {
+        console.log(JSON.stringify(error))
+    })
 }
 
 function setCategory(title = "", url = "") {

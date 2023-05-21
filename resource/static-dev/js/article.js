@@ -1,13 +1,6 @@
 $(function () {
-    function setImage(img, src) {
-        getImage(src).then(function (response) {
-            $(img).attr("src", "data:img/png;base64," + response.data.data)
-        })
-    }
-
     function setImages() {
         var imgs = $("div.main-content * img")
-        console.log(imgs.length)
         for (let i = 0; i < imgs.length; i++) {
             const img = imgs[i]
             var src = $(img).attr("data-src")
@@ -40,6 +33,8 @@ $(function () {
                 let img = $(articleTemplate).find("img");
                 $(img).attr("data-src", articleImgSrc)
 
+                let redirect = $(articleTemplate).find("a.readmore-btn")
+                $(redirect).attr("href", "./article-single.html?article_id=" + articleData.id)
                 let content = "<div class='post_item'>" + $(articleTemplate).html() + "</div>";
                 parent.append(content)
             }
