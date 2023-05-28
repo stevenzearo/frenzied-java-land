@@ -23,14 +23,15 @@ $(function () {
                 var author = $(articleTemplate).find("li.admin a")
                 $(author).text(articleData.author)
 
-                var date = $(articleTemplate).find("li.date a")
-                $(date).text(articleData.created_time)
+                var createdTime = new Date(articleData.created_time).toLocaleString()
+                var date = $(articleTemplate).find("li.date")
+                $(date).text(createdTime)
 
                 var digest = $(articleTemplate).find("h6")
                 $(digest).text(articleData.digest)
 
                 var articleImgSrc = articleData.thumb_url
-                let img = $(articleTemplate).find("img");
+                let img = $(articleTemplate).find("img")
                 $(img).attr("data-src", articleImgSrc)
 
                 let redirect = $(articleTemplate).find("a.readmore-btn")

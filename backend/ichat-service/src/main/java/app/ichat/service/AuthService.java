@@ -1,6 +1,6 @@
 package app.ichat.service;
 
-import app.ichat.config.WeChatPublicAccountConfig;
+import app.ichat.config.wechat.WeChatPublicAccountConfig;
 import app.ichat.domain.AccessTokenCache;
 import app.ichat.service.wechat.WeChatAccessTokenResponse;
 import app.ichat.service.wechat.WeChatGetAccessTokenRequest;

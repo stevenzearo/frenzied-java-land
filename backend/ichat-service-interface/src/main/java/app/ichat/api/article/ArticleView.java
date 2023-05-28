@@ -1,6 +1,7 @@
 package app.ichat.api.article;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.ZonedDateTime;
 
 /**
  * @author Steve Zou
@@ -27,5 +28,6 @@ public class ArticleView {
     public String url;
     @JsonProperty("thumb_url")
     public String thumbUrl;
-//    @JsonProperty("")
+    @JsonProperty("created_time")
+    public ZonedDateTime createdTime;
 }

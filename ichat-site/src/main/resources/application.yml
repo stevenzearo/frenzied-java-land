@@ -49,7 +49,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: true
 ichatService:
-  host: http://localhost:8501
+  host: http://localhost:8401
 ribbon:
   eureka:
     enabled: true

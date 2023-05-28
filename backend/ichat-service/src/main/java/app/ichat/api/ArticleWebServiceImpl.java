@@ -4,6 +4,7 @@ import app.ichat.api.article.ArticleSummaryView;
 import app.ichat.api.article.ArticleView;
 import app.ichat.api.article.SearchArticleSummaryRequest;
 import app.ichat.api.article.SearchArticleSummaryResponse;
+import app.ichat.api.article.UpdateArticleRequest;
 import app.ichat.service.article.ArticleService;
 import app.web.response.EmptyResponse;
 import app.web.response.Response;
@@ -44,5 +45,10 @@ public class ArticleWebServiceImpl implements ArticleWebService {
     public EmptyResponse createArticle(ArticleView article) {
         articleService.createArticle(article);
         return ResponseHelper.ok();
+    }
+
+    @Override
+    public EmptyResponse updateArticle(String id, UpdateArticleRequest request) {
+        return ResponseHelper.encloseWithException(() -> articleService.updateArticle(id, request));
     }
 }

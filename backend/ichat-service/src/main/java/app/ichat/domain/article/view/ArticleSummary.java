@@ -1,5 +1,7 @@
 package app.ichat.domain.article.view;
 
+import app.ichat.domain.article.Article;
+import java.time.ZonedDateTime;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -29,4 +31,6 @@ public class ArticleSummary {
     public String url;
     @Field("thumb_url")
     public String thumbUrl;
+    @Field("created_time")
+    public ZonedDateTime createdTime;
 }

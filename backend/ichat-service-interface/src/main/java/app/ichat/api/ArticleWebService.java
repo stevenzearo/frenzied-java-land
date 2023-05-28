@@ -4,6 +4,7 @@ import app.ichat.api.article.ArticleSummaryView;
 import app.ichat.api.article.ArticleView;
 import app.ichat.api.article.SearchArticleSummaryRequest;
 import app.ichat.api.article.SearchArticleSummaryResponse;
+import app.ichat.api.article.UpdateArticleRequest;
 import app.web.response.EmptyResponse;
 import app.web.response.Response;
 import java.util.List;
@@ -33,4 +34,7 @@ public interface ArticleWebService {
 
     @PostMapping("/article")
     EmptyResponse createArticle(@RequestBody ArticleView article);
+
+    @PutMapping("/article/{id}")
+    EmptyResponse updateArticle(@PathVariable("id") String id, @RequestBody UpdateArticleRequest request);
 }

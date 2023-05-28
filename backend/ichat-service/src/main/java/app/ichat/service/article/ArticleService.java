@@ -4,12 +4,21 @@ import app.ichat.api.article.ArticleSummaryView;
 import app.ichat.api.article.ArticleView;
 import app.ichat.api.article.SearchArticleSummaryRequest;
 import app.ichat.api.article.SearchArticleSummaryResponse;
+import app.ichat.api.article.UpdateArticleRequest;
 import app.ichat.domain.article.Article;
 import app.ichat.domain.article.view.ArticleSummary;
 import app.ichat.repository.ArticleRepository;
+import app.ichat.repository.ArticleSummaryRepository;
+import app.web.error.NotFoundException;
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,22 +28,16 @@ import org.springframework.stereotype.Service;
 public class ArticleService {
     @Autowired
     ArticleRepository articleRepository;
-    public ArticleView get(String articleId) {
-        Article article = articleRepository.get(articleId);
-        if (article == null) return null;
+    @Autowired
+    ArticleSummaryRepository articleSummaryRepository;
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
-        ArticleView articleView = new ArticleView();
-        articleView.id = article.id.toString();
-        articleView.title = article.title;
-        articleView.author = article.author;
-        articleView.digest = article.digest;
-        articleView.content = article.content;
-        articleView.contentSourceUrl = article.contentSourceUrl;
-        articleView.thumbMediaId = article.thumbMediaId;
-        articleView.showCoverPic = article.showCoverPic;
-        articleView.url = article.url;
-        articleView.thumbUrl = article.thumbUrl;
-        return articleView;
+    public ArticleView get(String articleId) {
+        Optional<Article> articleOptional = articleRepository.findById(new ObjectId(articleId));
+        if (articleOptional.isEmpty()) return null;
+        Article article = articleOptional.get();
+        return buildArticleView(article);
     }
 
     public List<ArticleView> findAll() {
@@ -43,16 +46,17 @@ public class ArticleService {
     }
 
     public List<ArticleSummaryView> findAllSummaries() {
-        // todo find another projection way
-        List<ArticleSummary> collections = articleRepository.findAllSummaries();
+        List<ArticleSummary> collections = articleSummaryRepository.findAll();
         return collections.stream().map(ArticleService::buildArticleSummaryView).collect(Collectors.toList());
     }
 
     public SearchArticleSummaryResponse findSummaries(SearchArticleSummaryRequest request) {
-        List<ArticleSummary> summaries = articleRepository.findSummaries(request.skip, request.limit);
-        List<ArticleSummaryView> summaryViews = summaries.stream().map(ArticleService::buildArticleSummaryView).collect(Collectors.toList());
+        PageRequest pageRequest = PageRequest.of(request.skip / request.limit, request.limit);
+        Page<ArticleSummary> summaryPage = articleSummaryRepository.findAll(pageRequest);
+        long total = summaryPage.getTotalElements();
+        List<ArticleSummaryView> summaryViews = summaryPage.get().map(ArticleService::buildArticleSummaryView).collect(Collectors.toList());
         SearchArticleSummaryResponse response = new SearchArticleSummaryResponse();
-        response.total = articleRepository.count();
+        response.total = (int) total;
         response.articleSummaryList = summaryViews;
         return response;
     }
@@ -68,6 +72,26 @@ public class ArticleService {
         article.showCoverPic = articleView.showCoverPic;
         article.url = articleView.url;
         article.thumbUrl = articleView.thumbUrl;
+        article.createdTime = articleView.createdTime == null ? ZonedDateTime.now() : articleView.createdTime;
+        articleRepository.save(article);
+    }
+
+    public void updateArticle(String id, UpdateArticleRequest request) {
+        if (!articleRepository.existsById(new ObjectId(id))) {
+            throw new NotFoundException("Article not found, id=" + id);
+        }
+        Article article = new Article();
+        article.id = new ObjectId(id);
+        article.title = request.title;
+        article.author = request.author;
+        article.digest = request.digest;
+        article.content = request.content;
+        article.contentSourceUrl = request.contentSourceUrl;
+        article.thumbMediaId = request.thumbMediaId;
+        article.showCoverPic = request.showCoverPic;
+        article.url = request.url;
+        article.thumbUrl = request.thumbUrl;
+        article.createdTime = request.createdTime;
         articleRepository.save(article);
     }
 
@@ -82,6 +106,7 @@ public class ArticleService {
         view.showCoverPic = c.showCoverPic;
         view.url = c.url;
         view.thumbUrl = c.thumbUrl;
+        view.createdTime = c.createdTime;
         return view;
     }
 
@@ -91,11 +116,13 @@ public class ArticleService {
         view.title = c.title;
         view.author = c.author;
         view.digest = c.digest;
+        view.content = c.content;
         view.contentSourceUrl = c.contentSourceUrl;
         view.thumbMediaId = c.thumbMediaId;
         view.showCoverPic = c.showCoverPic;
         view.url = c.url;
         view.thumbUrl = c.thumbUrl;
+        view.createdTime = c.createdTime;
         return view;
     }
 }
