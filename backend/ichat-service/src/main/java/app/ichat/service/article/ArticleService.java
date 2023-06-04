@@ -18,6 +18,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
@@ -51,7 +52,8 @@ public class ArticleService {
     }
 
     public SearchArticleSummaryResponse findSummaries(SearchArticleSummaryRequest request) {
-        PageRequest pageRequest = PageRequest.of(request.skip / request.limit, request.limit);
+        Sort sort = buildSortOrders(request.sorts);
+        PageRequest pageRequest = PageRequest.of(request.skip / request.limit, request.limit).withSort(sort);
         Page<ArticleSummary> summaryPage = articleSummaryRepository.findAll(pageRequest);
         long total = summaryPage.getTotalElements();
         List<ArticleSummaryView> summaryViews = summaryPage.get().map(ArticleService::buildArticleSummaryView).collect(Collectors.toList());
@@ -59,6 +61,22 @@ public class ArticleService {
         response.total = (int) total;
         response.articleSummaryList = summaryViews;
         return response;
+    }
+
+    private static Sort buildSortOrders(List<SearchArticleSummaryRequest.Sort> sorts) {
+        List<Sort.Order> orders = sorts.stream().map(sort -> {
+            String sortBy = getSortBy(sort.sortBy);
+            return new Sort.Order(sort.isDesc == Boolean.TRUE ? Sort.Direction.DESC : Sort.Direction.ASC, sortBy);
+        }).collect(Collectors.toList());
+        return Sort.by(orders);
+    }
+
+    private static String getSortBy(SearchArticleSummaryRequest.SortBy sortBy) {
+        switch (sortBy) {
+            case BY_CREATED_TIME:
+            default:
+                return "created_time";
+        }
     }
 
     public void createArticle(ArticleView articleView) {
