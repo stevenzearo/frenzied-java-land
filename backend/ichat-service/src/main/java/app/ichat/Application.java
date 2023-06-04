@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class Application {
     public static ConfigurableApplicationContext context;
+
     public static void main(String[] args) {
         context = SpringApplication.run(Application.class, args);
+        context.registerShutdownHook();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
