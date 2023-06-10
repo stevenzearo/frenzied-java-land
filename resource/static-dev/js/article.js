@@ -8,12 +8,18 @@ $(function () {
         }
     }
 
-    function setArticles() {
-        var articleTemplate = $("section.blog-sec div div.main-content div.post_item")[0]
-        let parent = $("section.blog-sec div div.main-content");
+    let articleTemplate = null
+    function initArticles() {
+        let parent = $("section.blog-sec div div.main-content div.post_items");
+        articleTemplate = $("section.blog-sec div div.main-content div.post_items div.post_item")[0]
         parent.empty()
-
-        getArticles(function (response) {
+    }
+    let skip = 0;
+    let total = 0;
+    function setArticles(skip = 0, limit = 5) {
+        let parent = $("section.blog-sec div div.main-content div.post_items");
+        getArticles(skip, limit, function (response) {
+            total = response.total
             let articleSummaries = response.article_summaries;
             for (let i = 0; i < articleSummaries.length; i++) {
                 let articleData = articleSummaries[i]
@@ -39,11 +45,18 @@ $(function () {
                 let content = "<div class='post_item'>" + $(articleTemplate).html() + "</div>";
                 parent.append(content)
             }
-            parent.append("<button class=\"load-more-btn\">load more</button>")
-        }).then(function () {
-            setImages()
+        }).then(setImages)
+    }
+    function setLoadMoreEvent() {
+        var loadMoreBtn = $("section.blog-sec div div.main-content button.load-more-btn")[0]
+        $(loadMoreBtn).click(function () {
+            skip += 5;
+            if (skip > total) return
+            setArticles(skip, 5)
         })
     }
+    setLoadMoreEvent()
+    initArticles()
     setArticles()
     /*
     new Promise(function (resolve, reject) {
