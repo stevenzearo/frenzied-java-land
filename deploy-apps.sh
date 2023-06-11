@@ -7,7 +7,7 @@ fi
 
 is_runnable_app() {
   app_names=("registry-site","ichat-site","ichat-service")
-  for i in ${app_names[@]}
+  for i in "${app_names[@]}"
   do
     [ "$i" == "$app_name" ] && return "1";
   done
@@ -35,7 +35,7 @@ get_resource_path() {
 echo "resource path:$(get_resource_path)"
 
 kill_exist_app() {
-  if [ -n pid ]; then
+  if [ -n "$pid" ]; then
     echo "Existing app runing on pid:$pid"
     kill $pid
     echo "Killed $pid"
