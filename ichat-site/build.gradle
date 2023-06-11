@@ -32,3 +32,27 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testImplementation("junit:junit:$junitVersion")
 }
+
+task overrideDevResources(type: Copy, group: 'Run Configurations', description: 'replace resources from conf/dev') {
+    println("> start replace resources")
+    def resources = fileTree('src/main/resources/')
+    resources.each {
+        println("> delete:" + it.name)
+        it.deleteOnExit()
+    }
+    from fileTree('conf/dev/')
+    into 'src/main/resources/'
+    println("> replace resources successfully")
+}
+
+task overrideProdResources(type: Copy, group: 'Run Configurations', description: 'replace resources from conf/prod') {
+    println("> start replace resources")
+    def resources = fileTree('src/main/resources/')
+    resources.each {
+        println("> delete:" + it.name)
+        it.deleteOnExit()
+    }
+    from fileTree('conf/prod/')
+    into 'src/main/resources/'
+    println("> replace resources successfully")
+}
