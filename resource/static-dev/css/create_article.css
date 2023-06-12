@@ -1,0 +1,7 @@
+pre.codearea {
+    overflow: scroll;
+    height: 400px;
+}
+select {
+    border: none;
+}

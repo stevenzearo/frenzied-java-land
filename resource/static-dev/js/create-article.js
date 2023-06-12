@@ -14,8 +14,7 @@ $(function () {
 
     const url = new URL(window.location.href)
     let articleId = url.searchParams.get("article_id")
-
-    getArticle(articleId, function (response) {
+    function preview() {
         let dataTemplate = $("div.blog-single div.post_item")
         let title = $(dataTemplate).find("h2 a")
         console.log(response.title)
@@ -31,7 +30,16 @@ $(function () {
 
         let img = $(dataTemplate).find("img.blog-image")
         $(img).attr("data-src", response.thumb_url)
-    }).then(function () {
-        setImages()
+    }
+    function submit() {
+
+    }
+
+    $("#preview").click(function () {
+        alert(1)
+    })
+
+    $("#submit").click(function () {
+        alert(2)
     })
 })
