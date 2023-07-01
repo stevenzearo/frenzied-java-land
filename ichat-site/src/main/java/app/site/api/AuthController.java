@@ -2,7 +2,7 @@ package app.site.api;
 
 import app.site.service.AuthService;
 import app.site.service.ChatService;
-import javax.ws.rs.QueryParam;
+import jakarta.ws.rs.QueryParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

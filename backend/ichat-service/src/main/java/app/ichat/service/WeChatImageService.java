@@ -1,6 +1,7 @@
 package app.ichat.service;
 
 import app.web.error.WeChatIntegrationException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -10,6 +11,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,8 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WeChatImageService {
+    private static final String UPLOAD_IMAGE_URL = "https://api.weixin.qq.com/cgi-bin/media/uploadimg";
     private final Logger logger = LoggerFactory.getLogger(WeChatImageService.class);
-
+    @Autowired
+    ObjectMapper mapper;
     public byte[] getImage(String url) {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpUriRequest httpRequest = RequestBuilder.get()
@@ -32,4 +36,5 @@ public class WeChatImageService {
             throw new WeChatIntegrationException(String.format("Failed to get image, url=%s", url), e);
         }
     }
+
 }
