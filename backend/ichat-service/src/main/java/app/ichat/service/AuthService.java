@@ -30,7 +30,7 @@ public class AuthService {
     private AccessTokenCache accessTokenCache;
     @Autowired
     private WeChatPublicAccountConfig accountConfig;
-    @Autowired
+    @Autowired(required = false)
     ObjectMapper mapper;
 
     public String getAccessToken(Boolean renew) {

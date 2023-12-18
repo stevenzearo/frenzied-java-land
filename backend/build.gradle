@@ -43,7 +43,7 @@ project(':backend:ichat-service') {
         implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
         implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
 
-        implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
+//        implementation("org.springframework.boot:spring-boot-starter-logging:$springBootVersion")
 //        implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix:$springHystrixVersion")
         implementation("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
 //        implementation("mysql:mysql-connector-java:$mysqlVersion")
@@ -56,7 +56,11 @@ project(':backend:ichat-service') {
         implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springCloudVersion") {
             exclude group: 'com.google.code.gson', module: 'gson'
         }
-
+        implementation ("io.freefair.okhttp-spring-boot:okhttp-spring-boot-starter:3.1.1") {
+            exclude group: 'javax.xml.bind', module: 'jaxb-api'
+            exclude group: 'com.sun.xml.bind', module: 'jaxb-impl'
+            exclude group: 'org.glassfish.jaxb', module: 'jaxb-runtime'
+        }
         testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
         testImplementation("junit:junit:$junitVersion")
     }

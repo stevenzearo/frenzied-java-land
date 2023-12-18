@@ -3,7 +3,7 @@ package app.ichat.api;
 import app.ichat.service.AuthService;
 import app.web.response.Response;
 import app.web.response.ResponseHelper;
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

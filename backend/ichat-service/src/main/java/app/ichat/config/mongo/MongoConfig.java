@@ -1,15 +1,12 @@
 package app.ichat.config.mongo;
 
-import com.fasterxml.jackson.databind.util.Converter;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.expression.BeanFactoryAccessor;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.web.servlet.view.tiles3.SpringBeanPreparerFactory;
 
 /**
  * @author Steve Zou
