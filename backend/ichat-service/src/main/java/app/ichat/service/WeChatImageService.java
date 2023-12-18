@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class WeChatImageService {
-    private static final String UPLOAD_IMAGE_URL = "https://api.weixin.qq.com/cgi-bin/media/uploadimg";
     private final Logger logger = LoggerFactory.getLogger(WeChatImageService.class);
-    @Autowired
+    @Autowired(required = false)
     ObjectMapper mapper;
+
     public byte[] getImage(String url) {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpUriRequest httpRequest = RequestBuilder.get()

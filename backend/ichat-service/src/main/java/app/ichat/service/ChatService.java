@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class ChatService {
     private final Logger logger = LoggerFactory.getLogger(ChatService.class);
     private static final String TRUING_CHAT_URL = "http://chatbot-api.turingapi.com/v1/wechat";
-    @Autowired
+    @Autowired(required = false)
     private ObjectMapper mapper;
 
     public ChatResponse chat(String id, ChatRequest request) {

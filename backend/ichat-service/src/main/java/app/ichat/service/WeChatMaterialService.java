@@ -52,7 +52,7 @@ public class WeChatMaterialService {
     private static final String MATERIAL_RESOURCE_URL = "https://api.weixin.qq.com/cgi-bin/material/batchget_material";
     private static final String UPLOAD_MATERIAL_URL = "https://api.weixin.qq.com/cgi-bin/material/add_material";
     private final Logger logger = LoggerFactory.getLogger(WeChatMaterialService.class);
-    @Autowired
+    @Autowired(required = false)
     ObjectMapper mapper;
 
     public SearchMaterialResponse searchMaterial(String accessToken, SearchMaterialRequest request) {
