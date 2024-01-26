@@ -4,8 +4,8 @@ import app.ichat.api.chat.ChatResponse;
 import app.ichat.service.turing.TuringChatResponse;
 import java.util.Arrays;
 import java.util.Objects;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Steve Zou

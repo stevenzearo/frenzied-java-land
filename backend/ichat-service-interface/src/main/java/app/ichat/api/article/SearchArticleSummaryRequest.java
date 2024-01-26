@@ -1,9 +1,10 @@
 package app.ichat.api.article;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.validation.constraints.NotNull;
 
 /**
  * @author Steve Zou

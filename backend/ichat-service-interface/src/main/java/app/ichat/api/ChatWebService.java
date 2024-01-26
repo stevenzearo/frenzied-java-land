@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * @author Steve Zou
  */
-@FeignClient(value = "ichat-service", qualifiers = "chat-web-service")
+@FeignClient(value = "ichat-service", qualifiers = "chat-web-service", url = Context.ICHAT_SERVICE_URL)
 public interface ChatWebService {
     @PostMapping(value = "/chat/{id}")
     Response<ChatResponse> chat(@PathVariable("id") String id, @RequestBody ChatRequest request);

@@ -27,10 +27,6 @@ This project is an opensource project, project source code published on GitHub, 
    |--deployment # 项目部署目录，一般不存在，本地部署时，注意不要提交到GitHub
    |--docs # 项目需要用到的文档，包括代码开发，项目运营等需要用到的文档
    |--ichat-site # 项目网关服务，主要用于和内部服务交互，接口会暴露到外网
-   |--registry-site # 项目服务的注册中心，基于euraka的注册中心，用于服务之间的接口调用
-   |--resource # 项目前端代码
-   |  |--static # 项目前端部署使用的资源
-   |  |--static-dev # 项目前端开发目录
    |--wechat_integration # Python相关的试验，忽略
 ```
 

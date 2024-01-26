@@ -12,7 +12,7 @@ application {
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }
 
 task overrideDevResources(type: Copy, group: 'Run Configurations', description: 'replace resources from conf/dev') {

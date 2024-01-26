@@ -1,10 +1,14 @@
 package app.validation;
 
+import org.junit.jupiter.api.Test;
+
 /**
  * @author steve
  */
 public class ValidationTest {
-    public static void main(String[] args) throws Exception {
+
+    @Test
+    void test() throws Exception {
         AObject.ABObject abObject = new AObject.ABObject();
         abObject.id = "id-0001";
         abObject.name = "world";
