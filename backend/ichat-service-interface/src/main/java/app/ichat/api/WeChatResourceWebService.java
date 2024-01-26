@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * @author Steve Zou
  */
-@FeignClient(value = "ichat-service", qualifiers = "wechat-resource-web-service")
+@FeignClient(value = "ichat-service", qualifiers = "wechat-resource-web-service", url = Context.ICHAT_SERVICE_URL)
 public interface WeChatResourceWebService {
     @GetMapping(value = "/wechat/image")
     Response<byte[]> getImage(@RequestParam("url") String url);

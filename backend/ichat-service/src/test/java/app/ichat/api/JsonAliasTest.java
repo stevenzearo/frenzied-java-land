@@ -3,8 +3,8 @@ package app.ichat.api;
 import app.ichat.service.wechat.WeChatAccessTokenResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Steve Zou
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Assertions;
 public class JsonAliasTest {
 
     @Test
-    public void testJsonAlias() {
+    void testJsonAlias() {
         String s = "{\"access_token\":\"abc\",\"expires_in\":123}";
         ObjectMapper mapper = new ObjectMapper();
         try {

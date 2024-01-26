@@ -2,16 +2,16 @@ plugins {
     id 'java'
     id 'idea'
 }
-group 'com.steve.ichat'
-version '0.0.1-SNAPSHOT'
 
-allprojects {
+subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
 
+    group 'com.steve.ichat'
+    version '0.0.1-SNAPSHOT'
+
     repositories {
         mavenCentral()
-        jcenter()
         maven {
             name "maven-repo"
             url "https://repo.maven.apache.org/maven2"
@@ -23,11 +23,5 @@ allprojects {
 
     test {
         useJUnitPlatform()
-    }
-}
-
-subprojects {
-    repositories {
-        mavenCentral()
     }
 }

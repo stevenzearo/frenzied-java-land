@@ -6,7 +6,8 @@ plugins {
 sourceCompatibility = JavaVersion.VERSION_17
 targetCompatibility = JavaVersion.VERSION_17
 test {
-    useJUnit()
+    useJUnitPlatform()
 }
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 }

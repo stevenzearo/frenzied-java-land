@@ -12,10 +12,10 @@ application {
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }
 
 dependencies {
     implementation(project(':common:common-lib'))
-    testImplementation("junit:junit:$junitVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 }

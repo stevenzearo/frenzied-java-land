@@ -4,8 +4,8 @@ import app.site.model.ChatCache;
 import app.site.service.ChatCacheService;
 import java.time.Duration;
 import java.util.concurrent.ConcurrentHashMap;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Steve Zou

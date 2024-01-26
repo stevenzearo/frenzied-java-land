@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * @author Steve Zou
  */
-@FeignClient(value = "ichat-service", qualifiers = "article-web-service")
+@FeignClient(value = "ichat-service", qualifiers = "article-web-service", url = Context.ICHAT_SERVICE_URL)
 public interface ArticleWebService {
     @GetMapping("article/{id}")
     Response<ArticleView> get(@PathVariable("id") String articleId);

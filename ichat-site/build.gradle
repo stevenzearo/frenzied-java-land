@@ -12,7 +12,7 @@ application {
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }
 
 dependencies {
@@ -22,15 +22,13 @@ dependencies {
     implementation("com.sun.xml.bind:jaxb-impl:$javaxVersion")
     implementation("org.glassfish.jaxb:jaxb-runtime:$javaxVersion")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign:$springCloudVersion")
-//    implementation("redis.clients:jedis:$jedisVersion")
-//    implementation("org.springframework.data:spring-data-redis:$springDataVersion")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:$springCloudVersion"){
         exclude group: 'com.google.code.gson', module: 'gson'
     }
     implementation("org.springframework.boot:spring-boot-starter-websocket:$springBootVersion")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testImplementation("junit:junit:$junitVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter:$junitVersion")
 }
 
 task overrideDevResources(type: Copy, group: 'Run Configurations', description: 'replace resources from conf/dev') {
